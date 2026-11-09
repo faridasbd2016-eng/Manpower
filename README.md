@@ -8,7 +8,9 @@
 
 ## Ki kore
 
-- **Passport Tracker** — candidate, status, agent, company, job category; Excel import / export
+- **Passport Tracker** — candidate, status, agent, company, job category; **📎 passport copy o bidesh jawar shob kagoj upload** (cloud e encrypt); Excel import / export
+- **Candidate Profile** — status timeline, kagoj er meyad alert, prarthi r package o kisti, WhatsApp; **📷 Passport MRZ scan**; **✈️ Flight list / Manifest**
+- **Recruitment Report** o Dashboard **Pipeline**; Agent commission o Status Report; Company Demand Note
 - **Agent / Company / Loan Ledger**, **Cash & Bank** (Day Close, Reconciliation, Transfer, Split payment)
 - **Voucher** (QR code + verify), **Daily Report, Profit & Loss, Monthly / Yearly report, Trial Balance, Balance Sheet**
 - **Staff & Salary, Task List, Recycle Bin, Posting Lock, Login History**
@@ -45,7 +47,7 @@ Onno PC te prothom page er **"☁️ Cloud theke data anun"** — shob data ar u
 ## Shahajjo / Changelog
 
 Software er bhitore **F1** — puro User Guide ar protita version er poriborton.
-**Bortoman version: v4.4.1**
+**Bortoman version: v4.6.0**
 
 ## Tech
 
