@@ -1,0 +1,17 @@
+{
+  "name": "AMAZ Manpower",
+  "short_name": "AMAZ Manpower",
+  "description": "Passport tracking, agent / company ledger, cash & bank, reports — Amin Trade International",
+  "lang": "en",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1e3a8a",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {"src": "app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "app-icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
