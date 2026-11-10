@@ -47,7 +47,7 @@ Onno PC te prothom page er **"☁️ Cloud theke data anun"** — shob data ar u
 ## Shahajjo / Changelog
 
 Software er bhitore **F1** — puro User Guide ar protita version er poriborton.
-**Bortoman version: v4.6.0**
+**Bortoman version: v4.7.0**
 
 ## Tech
 

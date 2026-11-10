@@ -1,5 +1,5 @@
 /* AMAZ Manpower — offline service worker */
-const CACHE = 'amaz-manpower-v4.6.0';
+const CACHE = 'amaz-manpower-v4.7.0';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './app-icon-192.png', './app-icon-512.png', './app-icon-maskable.png', './app-apple-touch.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
