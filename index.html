@@ -1301,7 +1301,9 @@ function stampAll(cols){const sm=DB.syncMeta,wantTomb=syncReady()||!!sm.lastPush
  return{writes,dels}}
 async function persist(){if(!DB||_saveBlocked)return;const cols=COLLS.filter(c=>DIRTY.has(c)||_fullWrite);const sing=DIRTY.has('_s')||_fullWrite;DIRTY.clear();
  const ch=stampAll(cols);const full=_fullWrite;_fullWrite=false;DB._savedAt=Date.now();
- if(STORAGE_MODE!=='idb'||!IDBH){lsFallbackSave();return}
+ if(STORAGE_MODE!=='idb'||!IDBH){
+  if(STORAGE_MODE==='idb'&&!IDBH){try{IDBH=await idbOpen()}catch(e){errLog('idb reopen',e)}}
+  if(!IDBH){lsFallbackSave();return}}
  try{
   if(!full){const cur=await reqP(IDBH.transaction('singletons','readonly').objectStore('singletons').get('stamp'));if(cur&&cur.v&&cur.v!==_tabStamp){tabConflict();return}}
   const tx=IDBH.transaction(COLLS.concat(['singletons','tombstones','roles']),'readwrite');
@@ -1313,8 +1315,11 @@ async function persist(){if(!DB||_saveBlocked)return;const cols=COLLS.filter(c=>
    if(full)tx.objectStore('singletons').delete('app');
    tx.objectStore('singletons').put({k:'stamp',v:ns})}
   await txDone(tx);_tabStamp=ns;saveOk();if(full)lsDel(LS_V4)}
- catch(e){errLog('idb save',e);STORAGE_MODE='ls';lsFallbackSave()}}
-function lsFallbackSave(){let s;try{s=JSON.stringify(DB)}catch(e){errLog('ls save',e);return}if(lsSet(LS_V4,s))saveOk();else saveBad()}
+ catch(e){errLog('idb save',e);try{if(IDBH&&IDBH.close)IDBH.close()}catch(x){}IDBH=null;lsFallbackSave()}}
+function lsFallbackSave(){let s;try{s=JSON.stringify(DB)}catch(e){errLog('ls save',e);return}
+ if(lsSet(LS_V4,s)){saveOk();return}
+ try{const slim=clone(DB);slim.activity=(slim.activity||[]).slice(-50);if(lsSet(LS_V4,JSON.stringify(slim))){saveOk();return}}catch(x){}
+ saveBad()}
 function tabConflict(){_saveBlocked=true;if(document.getElementById('tabWarn'))return;const bar=document.createElement('div');bar.id='tabWarn';bar.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:610;padding:14px 18px;background:linear-gradient(135deg,#b45309,#7c2d12);color:#fff;font-size:13px;line-height:1.7;box-shadow:0 -6px 24px rgba(0,0,0,.45);display:flex;gap:14px;align-items:center;flex-wrap:wrap';
  bar.innerHTML='<div style="flex:1;min-width:250px"><b>'+T('⚠️ Ei software onno ekta tab / window te o khola ache, ar okhane data bodlano hoyeche.','⚠️ This software is also open in another tab / window, and data was changed there.','⚠️ এই সফটওয়্যার অন্য একটি ট্যাব / উইন্ডোতেও খোলা আছে, আর সেখানে ডেটা বদলানো হয়েছে।')+'</b><br><span style="opacity:.9;font-size:12px">'+T('Ek shathe dui tab e kaj korle ekta r kaj onno ta muche dey — tai ei tab er shesh poriborton save kora hoyni. Ei tab ta reload korun, ar ekta tab e-i kaj korun.','Working in two tabs at once makes one overwrite the other — so the latest change in this tab was not saved. Reload this tab and work in one tab only.','একসাথে দুই ট্যাবে কাজ করলে একটির কাজ অন্যটি মুছে দেয় — তাই এই ট্যাবের শেষ পরিবর্তন সেভ হয়নি। এই ট্যাবটি রিলোড করুন, আর একটি ট্যাবেই কাজ করুন।')+'</span></div><button class="btn" data-act="reloadPage">🔄 Reload</button>';document.body.appendChild(bar)}
 function saveOk(){if(_saveFailed){_saveFailed=false;const b=document.getElementById('storageWarn');if(b)b.remove()}}
@@ -1707,7 +1712,11 @@ const isMY=a=>a.category===MALAYSIA_CAT;
 function allocMap(a){const ids=Array.isArray(a.passportIds)?a.passportIds:[];if(!ids.length)return null;const m={};
  if(a.alloc&&typeof a.alloc==='object'){for(const id of ids)m[id]=num(a.alloc[id]);return m}
  const con=ids.map(id=>num((ppById(id)||{}).contractAmount)),tot=con.reduce((x,y)=>x+y,0),amt=num(a.cashOut);
- ids.forEach((id,i)=>{m[id]=r2(tot?amt*con[i]/tot:amt/ids.length)});return m}
+ let sumPart=0;
+ ids.forEach((id,i)=>{
+  if(i===ids.length-1){m[id]=r2(amt-sumPart)}
+  else{const share=r2(tot?amt*con[i]/tot:amt/ids.length);m[id]=share;sumPart=r2(sumPart+share)}
+ });return m}
 const paidMap=()=>memo('paidMap',()=>{const m=new Map();for(const a of DB.accounts){if(!isMY(a))continue;const al=allocMap(a);if(!al)continue;for(const id in al)m.set(id,r2((m.get(id)||0)+al[id]))}return m});
 const paidOf=pid=>paidMap().get(pid)||0;
 const agStats=()=>memo('agStats',()=>{const m=new Map(),g=n=>{let s=m.get(n);if(!s){s={total:0,flown:0,advance:0,deducted:0,comm:0};m.set(n,s)}return s},cm=new Map(DB.agents.map(a=>[a.name,num(a.comm)]));
@@ -4093,8 +4102,8 @@ function cfClose(yes){const bg=document.getElementById('cfBg');if(!bg||!bg.class
 function askConfirm(msg,o){return new Promise(res=>cfShow(Object.assign({msg},o||{},{onYes:()=>res(true),onNo:()=>res(false)})))}
 /* je kaj (button) confirm chailo, "Ha" dile shei kaj ta abar chalano hoy — tokhon ei prosno ta "ha" dhore */
 window.confirm=function(msg){msg=String(msg==null?'':msg);if(_cfOKs&&_cfOKs.has(msg))return true;
- let a=window._curAct;if((!a||!ACT[a.a])&&MODAL&&$('#modalBg').classList.contains('show'))a={a:'saveModal',d:{}};if(!a||!CU||!ACT[a.a])return _nConfirm(msg);
- const ok=new Set(_cfOKs||[]);cfShow({msg,onYes:()=>{ok.add(msg);const p=window._curAct,po=_cfOKs;window._curAct=a;_cfOKs=ok;try{const r=ACT[a.a](Object.assign({},a.d),a.el||null);if(r&&typeof r.then==='function')r.finally(()=>{_cfOKs=po})}catch(e){errLog('act:'+a.a,e)}finally{window._curAct=p;if(a.a!=='saveModal')_cfOKs=po}}});return false};
+ let a=window._curAct;const mb=$('#modalBg');if((!a||!ACT[a.a])&&MODAL&&mb&&mb.classList.contains('show'))a={a:'saveModal',d:{}};if(!a||!CU||!ACT[a.a])return _nConfirm(msg);
+ const ok=new Set(_cfOKs||[]);cfShow({msg,onYes:()=>{ok.add(msg);const p=window._curAct,po=_cfOKs;window._curAct=a;_cfOKs=ok;let isAsync=false;try{const r=ACT[a.a](Object.assign({},a.d),a.el||null);if(r&&typeof r.then==='function'){isAsync=true;r.finally(()=>{if(a.a!=='saveModal')_cfOKs=po;window._curAct=p})}}catch(e){errLog('act:'+a.a,e)}finally{if(!isAsync){window._curAct=p;if(a.a!=='saveModal')_cfOKs=po}}}});return false};
 window.alert=function(msg){if(!CU||!document.body)return _nAlert(msg);cfShow({msg:String(msg==null?'':msg),alert:true})};
 document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.closest('[data-cf]');if(b){ev.preventDefault();ev.stopPropagation();cfClose(b.dataset.cf==='1')}},true);
 document.addEventListener('keydown',ev=>{if(!document.querySelector('#cfBg.show'))return;
@@ -4132,7 +4141,7 @@ function draftRestore(d){try{if(d.page&&canView(d.page)){ST.page=d.page;render()
  _mDirty=true;markUnsaved();draftSave();toast(T('Ager lekha ferot ana holo — mile niye Save korun','Your earlier entries are back — check them and press Save','আগের লেখা ফেরত আনা হলো — মিলিয়ে নিয়ে সেভ করুন'))}catch(e){errLog('draftRestore',e);draftClear()}}
 /* click dispatcher: kon kaj chalche (confirm replay) ar kon kaj form khullo (draft) */
 document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.closest('[data-act]');if(!b||b.disabled||!ACT[b.dataset.act])return;const a=b.dataset.act;
- if(['closeModal','saveModal'].includes(a)||b.closest('#cfBg'))return;const wasOpen=$('#modalBg').classList.contains('show');window._curAct={a,d:Object.assign({},b.dataset),el:b};
+ if(['closeModal','saveModal'].includes(a)||b.closest('#cfBg'))return;const wasOpen=!!($('#modalBg')&&$('#modalBg').classList.contains('show'));window._curAct={a,d:Object.assign({},b.dataset),el:b};
  setTimeout(()=>{window._curAct=null;if(!wasOpen&&modalIsForm()&&!MODAL_SRC){const d=Object.assign({},b.dataset);delete d.act;MODAL_SRC={a,d}}},0)},true);
 
 /* ---------- 5) Auto Logout er 1 minute age countdown + onno tab e logout ---------- */
@@ -4206,7 +4215,7 @@ async function sbList(prefix){const c=syncCfg();if(isGas(c))return(await gasCall
  if(!res.ok)throw new Error('list '+res.status);const j=await res.json();return(Array.isArray(j)?j:[]).map(x=>x&&x.name).filter(Boolean)}
 async function sbDeleteFiles(paths){const c=syncCfg();if(isGas(c)){await gasCall('fdel',{paths});return}const res=await fetch(sbBase(c)+'/storage/v1/object/'+FILE_BUCKET,{method:'DELETE',headers:{'apikey':c.key,'Authorization':'Bearer '+c.key,'Content-Type':'application/json'},body:JSON.stringify({prefixes:paths})});if(!res.ok)throw new Error('delete '+res.status)}
 async function gzBytes(str){if(typeof CompressionStream==='undefined')return{b:new TextEncoder().encode(str),gz:false};const cs=new Blob([str]).stream().pipeThrough(new CompressionStream('gzip'));return{b:new Uint8Array(await new Response(cs).arrayBuffer()),gz:true}}
-async function gunzipText(buf,gz){if(!gz)return new TextDecoder().decode(buf);const ds=new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'));return await new Response(ds).text()}
+async function gunzipText(buf,gz){if(!gz)return new TextDecoder().decode(buf);if(typeof DecompressionStream==='undefined')throw new Error(T('Ei browser e decompress kora jay na (DecompressionStream nei)','This browser cannot decompress backups (DecompressionStream missing)','এই ব্রাউজারে ব্যাকআপ ডিকম্প্রেস করা যায় না (DecompressionStream নেই)'));const ds=new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'));return await new Response(ds).text()}
 const cbkOn=()=>S().cloudBackup!=='0';
 const cbkDir=()=>cloudOrg()+'/backups';
 function cbkPayload(){const d=clone(DB);delete d._savedAt;d.settings.sync={provider:'sb',url:'',key:'',org:'',secret:'',gasUrl:'',gasToken:'',deviceCode:syncCfg().deviceCode||'',enabled:false,auto:true};d.syncMeta={vseq:(DB.syncMeta||{}).vseq||{}};return{app:'AMAZ Manpower',v:4,ver:APP.ver,exportedAt:new Date().toISOString(),data:d}}
@@ -4491,7 +4500,7 @@ function mrzParse(text){const lines=String(text||'').toUpperCase().replace(/[«�
  const ok={pno:mrzCheck(pno)===pnoC,dob:mrzCheck(dob)===dobC,exp:mrzCheck(exp)===expC};
  return{passportNo:pno.replace(/<+/g,''),country:l1.slice(2,5).replace(/</g,''),nationality:l2.slice(10,13).replace(/</g,''),sex:l2[20]==='<'?'':l2[20],surname:sur,given:giv,candidateName:[giv,sur].filter(Boolean).join(' ').replace(/\s+/g,' '),dob:mrzDate(dob,false),expireDate:mrzDate(exp,true),ok,valid:ok.pno&&ok.dob&&ok.exp,raw:[l1,l2]}}
 const TESS_URL='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
-async function mrzFromImage(du){await loadScriptOnce(TESS_URL);if(!window.Tesseract)throw new Error('OCR');
+async function mrzFromImage(du){if(!window.Tesseract&&!navigator.onLine)throw new Error(T('Internet connection nei — prothom bar OCR library load korte internet lagbe','No internet connection — internet is required to load OCR library the first time','ইন্টারনেট কানেকশন নেই — প্রথমবার OCR লাইব্রেরি লোড করতে ইন্টারনেট লাগবে'));await loadScriptOnce(TESS_URL);if(!window.Tesseract)throw new Error('OCR');
  const crop=await new Promise(res=>{const im=new Image();im.onload=()=>{const W=Math.min(2000,im.width),sc=W/im.width,H=Math.round(im.height*sc),c=document.createElement('canvas');c.width=W;c.height=Math.round(H*.38);const g=c.getContext('2d');g.filter='grayscale(1) contrast(1.6)';g.drawImage(im,0,-Math.round(H*.62),W,H);res(c.toDataURL('image/png'))};im.onerror=()=>res(du);im.src=du});
  const run=async src=>{const r=await Tesseract.recognize(src,'eng',{tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<'});return mrzParse(r&&r.data&&r.data.text)};
  let m=await run(crop);if(!m||!m.valid){const m2=await run(du);if(m2&&(!m||m2.valid))m=m2}return m}

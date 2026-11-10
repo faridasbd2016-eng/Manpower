@@ -6,7 +6,7 @@ self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Pr
 self.addEventListener('fetch', e => {
   const req = e.request, url = new URL(req.url);
   if(req.method !== 'GET') return;                                   // Cloud Sync (POST) kokhono cache hoy na
-  if(url.origin !== self.location.origin && !/cdnjs\.cloudflare\.com|fonts\.(googleapis|gstatic)\.com/.test(url.hostname)) return;   // Supabase / Apps Script / Google — shorasori net e
+  if(url.origin !== self.location.origin && !/cdnjs\.cloudflare\.com|cdn\.jsdelivr\.net|fonts\.(googleapis|gstatic)\.com/.test(url.hostname)) return;   // Supabase / Apps Script / Google — shorasori net e
   // notun version er khobor shob shomoy net theke
   if(url.pathname.endsWith('/version.json')){ e.respondWith(fetch(req, {cache:'no-store'}).catch(() => new Response('{}', {headers:{'Content-Type':'application/json'}}))); return; }
   // app page: age net (notun update pete), na pele cache (offline)
