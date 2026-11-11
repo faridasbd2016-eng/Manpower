@@ -834,6 +834,14 @@ html[data-theme="dark"] .amt-hint.money{color:#93c5fd}html[data-theme="dark"] .a
 .onb-i{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:9px;padding:7px 9px;font-size:12.5px;background:var(--card)}.onb-i span{flex:1}
 .onb-i.done{opacity:.6}.onb-i.done span{text-decoration:line-through}
 @media(max-width:1000px){.onb-g{grid-template-columns:1fr 1fr}}@media(max-width:600px){.onb-g{grid-template-columns:1fr}}
+/* ===== v4.7.1 — Aging table (status card er sathe ek jinish na) ===== */
+.aging{padding:12px 14px}.ag-t th,.ag-t td{padding:7px 10px}
+.ag-t td.ag-c{font-weight:700;cursor:pointer;border-radius:6px}.ag-t td.ag-c.z{cursor:default;color:var(--muted);font-weight:400}
+.ag-t td.ag-c:not(.z):hover{outline:2px solid #2563eb;outline-offset:-2px}
+.ag-t td.ag0:not(.z){background:rgba(34,197,94,.10);color:#15803d}.ag-t td.ag1:not(.z){background:rgba(234,179,8,.12);color:#a16207}
+.ag-t td.ag2:not(.z){background:rgba(249,115,22,.14);color:#c2410c}.ag-t td.ag3:not(.z){background:rgba(220,38,38,.14);color:#b91c1c}
+html[data-theme="dark"] .ag-t td.ag0:not(.z){color:#86efac}html[data-theme="dark"] .ag-t td.ag1:not(.z){color:#fde047}html[data-theme="dark"] .ag-t td.ag2:not(.z){color:#fdba74}html[data-theme="dark"] .ag-t td.ag3:not(.z){color:#fca5a5}
+.ag-t tfoot td{border-top:2px solid var(--line)}
 </style>
 </head>
 <body>
@@ -1011,7 +1019,7 @@ const T=(s,e,b)=>{if(LG===1||_docEN)return e;if(LG===2)return b===undefined?e:b;
 const enDoc=f=>function(){const o=_docEN;_docEN=true;try{return f.apply(this,arguments)}finally{_docEN=o}};
 try{document.documentElement.lang=LG===2?'bn':'en'}catch(e){}
 
-const APP={name:'AMAZ Manpower',ver:'4.7.0',build:'b2026.11.10'};
+const APP={name:'AMAZ Manpower',ver:'4.7.1',build:'b2026.11.11'};
 const IDB_NAME='amaz_manpower_db',IDB_VER=4;
 const COLLS=['passports','accounts','agents','companies','jobCategories','statuses','categories','users','cashAccounts','transfers','loanParties','vkeys','dayCloses','recons','files','loginLog','bin','tasks','staff','staffTx','mrLocks','yearCloses'];
 const LS_V3='amaz_manpower_v1',LS_V4='amaz_mp_v4';
@@ -1085,7 +1093,7 @@ const FEATURES=()=>[
  ['data','data.backup',T('Backup download','Download backup','ব্যাকআপ ডাউনলোড')],['data','data.restore',T('Backup theke restore','Restore from backup','ব্যাকআপ থেকে রিস্টোর')],['data','data.reset',T('Shob data muche fela','Erase all data','সব ডেটা মুছে ফেলা')],['data','sync.run',T('Cloud sync chalano','Run cloud sync','ক্লাউড সিঙ্ক চালানো')],['data','sync.force',T('Force Push / Force Pull','Force Push / Force Pull','ফোর্স পুশ / ফোর্স পুল')]
 ].map(x=>({g:x[0],id:x[1],label:x[2]}));
 const FEATURE_IDS=['passport.add','passport.edit','passport.delete','passport.import','passport.bulk','ledger.add','ledger.edit','ledger.delete','bank.manage','loan.manage','staff.manage','task.manage','bin.restore','agent.manage','agent.delete','company.manage','company.delete','rate.manage','list.manage','profile.manage','report.print','report.export','data.backup','data.restore','data.reset','sync.run','sync.force'];
-const DASH_WIDGETS=()=>[['dash.head',T('👋 Upore shubhecha card (Aj · Cash · Bank, 7 diner kaj, Backup)','👋 Header card (Today · Cash · Bank, last 7 days, Backup)','👋 উপরে শুভেচ্ছা কার্ড (আজ · নগদ · ব্যাংক, ৭ দিনের কাজ, ব্যাকআপ)')],['dash.tasks',T('📝 Ajker kaj (Task List)','📝 Tasks due (Task List)','📝 আজকের কাজ (কাজের তালিকা)')],['dash.status',T('🛂 Passport status card gulo','🛂 Passport status cards','🛂 পাসপোর্ট স্ট্যাটাস কার্ড')],['dash.funnel',T('🔄 Recruitment Pipeline (kon dhape koto, ke atke ache)','🔄 Recruitment Pipeline (how many at each stage, who is stuck)','🔄 রিক্রুটমেন্ট পাইপলাইন (কোন ধাপে কত, কে আটকে আছে)')],['dash.money',T('💰 Taka-poisar hishab (Cash In / Out, balance, company due)','💰 Money summary (Cash In / Out, balance, company due)','💰 টাকা-পয়সার হিসাব (ক্যাশ ইন / আউট, ব্যালান্স, কোম্পানি বাকি)')],['dash.alerts',T('⏰ Passport meyad shesh / flight er alert','⏰ Passport expiry / flight alerts','⏰ পাসপোর্টের মেয়াদ শেষ / ফ্লাইট সতর্কতা')]];
+const DASH_WIDGETS=()=>[['dash.head',T('👋 Upore shubhecha card (Aj · Cash · Bank, 7 diner kaj, Backup)','👋 Header card (Today · Cash · Bank, last 7 days, Backup)','👋 উপরে শুভেচ্ছা কার্ড (আজ · নগদ · ব্যাংক, ৭ দিনের কাজ, ব্যাকআপ)')],['dash.tasks',T('📝 Ajker kaj (Task List)','📝 Tasks due (Task List)','📝 আজকের কাজ (কাজের তালিকা)')],['dash.status',T('🛂 Passport status card gulo','🛂 Passport status cards','🛂 পাসপোর্ট স্ট্যাটাস কার্ড')],['dash.funnel',T('⏳ Koto din dhore pore ache (0–15 / 16–30 / 31–60 / 60+ din)','⏳ How long they have been waiting (0–15 / 16–30 / 31–60 / 60+ days)','⏳ কত দিন ধরে পড়ে আছে (০–১৫ / ১৬–৩০ / ৩১–৬০ / ৬০+ দিন)')],['dash.money',T('💰 Taka-poisar hishab (Cash In / Out, balance, company due)','💰 Money summary (Cash In / Out, balance, company due)','💰 টাকা-পয়সার হিসাব (ক্যাশ ইন / আউট, ব্যালান্স, কোম্পানি বাকি)')],['dash.alerts',T('⏰ Passport meyad shesh / flight er alert','⏰ Passport expiry / flight alerts','⏰ পাসপোর্টের মেয়াদ শেষ / ফ্লাইট সতর্কতা')]];
 const DASH_IDS=['dash.head','dash.status','dash.funnel','dash.money','dash.alerts','dash.tasks'];
 const SET_SECTIONS=()=>[['co',T('🏢 Company','🏢 Company','🏢 কোম্পানি')],['lists',T('📋 List Gulo','📋 Lists','📋 তালিকাগুলো')],['look',T('🎨 Bhasha o Look','🎨 Language & Look','🎨 ভাষা ও চেহারা')],['sync',T('☁️ Cloud Sync','☁️ Cloud Sync','☁️ ক্লাউড সিঙ্ক')],['backup',T('💽 Backup o Storage','💽 Backup & Storage','💽 ব্যাকআপ ও স্টোরেজ')],['log',T('📜 Activity Log','📜 Activity Log','📜 অ্যাক্টিভিটি লগ')],['err',T('🐞 Error Log','🐞 Error Log','🐞 এরর লগ')],['security',T('🔐 Nirapotta','🔐 Security','🔐 নিরাপত্তা')],['license',T('🔑 License o Update','🔑 License & Update','🔑 লাইসেন্স ও আপডেট')],['vis',T('🔒 Visibility Control','🔒 Visibility Control','🔒 ভিজিবিলিটি কন্ট্রোল')],['danger',T('⚠️ Danger Zone','⚠️ Danger Zone','⚠️ বিপজ্জনক অংশ')]];
 const SET_IDS=['co','lists','look','sync','backup','log','err','security','license','vis','danger'];
@@ -1301,9 +1309,7 @@ function stampAll(cols){const sm=DB.syncMeta,wantTomb=syncReady()||!!sm.lastPush
  return{writes,dels}}
 async function persist(){if(!DB||_saveBlocked)return;const cols=COLLS.filter(c=>DIRTY.has(c)||_fullWrite);const sing=DIRTY.has('_s')||_fullWrite;DIRTY.clear();
  const ch=stampAll(cols);const full=_fullWrite;_fullWrite=false;DB._savedAt=Date.now();
- if(STORAGE_MODE!=='idb'||!IDBH){
-  if(STORAGE_MODE==='idb'&&!IDBH){try{IDBH=await idbOpen()}catch(e){errLog('idb reopen',e)}}
-  if(!IDBH){lsFallbackSave();return}}
+ if(STORAGE_MODE!=='idb'||!IDBH){lsFallbackSave();return}
  try{
   if(!full){const cur=await reqP(IDBH.transaction('singletons','readonly').objectStore('singletons').get('stamp'));if(cur&&cur.v&&cur.v!==_tabStamp){tabConflict();return}}
   const tx=IDBH.transaction(COLLS.concat(['singletons','tombstones','roles']),'readwrite');
@@ -1315,11 +1321,8 @@ async function persist(){if(!DB||_saveBlocked)return;const cols=COLLS.filter(c=>
    if(full)tx.objectStore('singletons').delete('app');
    tx.objectStore('singletons').put({k:'stamp',v:ns})}
   await txDone(tx);_tabStamp=ns;saveOk();if(full)lsDel(LS_V4)}
- catch(e){errLog('idb save',e);try{if(IDBH&&IDBH.close)IDBH.close()}catch(x){}IDBH=null;lsFallbackSave()}}
-function lsFallbackSave(){let s;try{s=JSON.stringify(DB)}catch(e){errLog('ls save',e);return}
- if(lsSet(LS_V4,s)){saveOk();return}
- try{const slim=clone(DB);slim.activity=(slim.activity||[]).slice(-50);if(lsSet(LS_V4,JSON.stringify(slim))){saveOk();return}}catch(x){}
- saveBad()}
+ catch(e){errLog('idb save',e);STORAGE_MODE='ls';lsFallbackSave()}}
+function lsFallbackSave(){let s;try{s=JSON.stringify(DB)}catch(e){errLog('ls save',e);return}if(lsSet(LS_V4,s))saveOk();else saveBad()}
 function tabConflict(){_saveBlocked=true;if(document.getElementById('tabWarn'))return;const bar=document.createElement('div');bar.id='tabWarn';bar.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:610;padding:14px 18px;background:linear-gradient(135deg,#b45309,#7c2d12);color:#fff;font-size:13px;line-height:1.7;box-shadow:0 -6px 24px rgba(0,0,0,.45);display:flex;gap:14px;align-items:center;flex-wrap:wrap';
  bar.innerHTML='<div style="flex:1;min-width:250px"><b>'+T('⚠️ Ei software onno ekta tab / window te o khola ache, ar okhane data bodlano hoyeche.','⚠️ This software is also open in another tab / window, and data was changed there.','⚠️ এই সফটওয়্যার অন্য একটি ট্যাব / উইন্ডোতেও খোলা আছে, আর সেখানে ডেটা বদলানো হয়েছে।')+'</b><br><span style="opacity:.9;font-size:12px">'+T('Ek shathe dui tab e kaj korle ekta r kaj onno ta muche dey — tai ei tab er shesh poriborton save kora hoyni. Ei tab ta reload korun, ar ekta tab e-i kaj korun.','Working in two tabs at once makes one overwrite the other — so the latest change in this tab was not saved. Reload this tab and work in one tab only.','একসাথে দুই ট্যাবে কাজ করলে একটির কাজ অন্যটি মুছে দেয় — তাই এই ট্যাবের শেষ পরিবর্তন সেভ হয়নি। এই ট্যাবটি রিলোড করুন, আর একটি ট্যাবেই কাজ করুন।')+'</span></div><button class="btn" data-act="reloadPage">🔄 Reload</button>';document.body.appendChild(bar)}
 function saveOk(){if(_saveFailed){_saveFailed=false;const b=document.getElementById('storageWarn');if(b)b.remove()}}
@@ -1712,11 +1715,7 @@ const isMY=a=>a.category===MALAYSIA_CAT;
 function allocMap(a){const ids=Array.isArray(a.passportIds)?a.passportIds:[];if(!ids.length)return null;const m={};
  if(a.alloc&&typeof a.alloc==='object'){for(const id of ids)m[id]=num(a.alloc[id]);return m}
  const con=ids.map(id=>num((ppById(id)||{}).contractAmount)),tot=con.reduce((x,y)=>x+y,0),amt=num(a.cashOut);
- let sumPart=0;
- ids.forEach((id,i)=>{
-  if(i===ids.length-1){m[id]=r2(amt-sumPart)}
-  else{const share=r2(tot?amt*con[i]/tot:amt/ids.length);m[id]=share;sumPart=r2(sumPart+share)}
- });return m}
+ ids.forEach((id,i)=>{m[id]=r2(tot?amt*con[i]/tot:amt/ids.length)});return m}
 const paidMap=()=>memo('paidMap',()=>{const m=new Map();for(const a of DB.accounts){if(!isMY(a))continue;const al=allocMap(a);if(!al)continue;for(const id in al)m.set(id,r2((m.get(id)||0)+al[id]))}return m});
 const paidOf=pid=>paidMap().get(pid)||0;
 const agStats=()=>memo('agStats',()=>{const m=new Map(),g=n=>{let s=m.get(n);if(!s){s={total:0,flown:0,advance:0,deducted:0,comm:0};m.set(n,s)}return s},cm=new Map(DB.agents.map(a=>[a.name,num(a.comm)]));
@@ -1781,9 +1780,9 @@ PAGES.dashboard=()=>{const p=DB.passports,total=p.length,counts={};for(const s o
  const quick=[can('passport.add')?'<button class="btn" data-act="ppAdd">+ '+esc(T('Notun Passport','New Passport','নতুন পাসপোর্ট'))+'</button>':'',can('ledger.add')?'<button class="btn green" data-act="acAdd" data-dir="in">⬇️ '+esc(T('Cash In','Cash In','ক্যাশ ইন'))+'</button><button class="btn red" data-act="acAdd" data-dir="out">⬆️ '+esc(T('Cash Out','Cash Out','ক্যাশ আউট'))+'</button>':''].join('');
  if(canDash('dash.head'))h+=dashHead(quick)+oddDateCard()+tasksCard();else h+=oddDateCard()+tasksCard()+'<div class="card" style="padding:15px 18px"><div class="flex-between" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap"><div><div style="font-size:16px;font-weight:800">'+esc(T('Assalamu Alaikum, ','Welcome, ','আসসালামু আলাইকুম, ')+(CU.name||CU.username))+' 👋</div><div class="text-muted" style="margin-top:3px">'+esc(S().co.name)+' · '+esc(fd(today()))+'</div></div><div class="toolbar" style="margin:0">'+quick+'</div></div></div>';
  if(canDash('dash.status')){h+='<div class="dash-sec">'+esc(T('Passport Status','Passport Status Overview','পাসপোর্ট স্ট্যাটাস'))+'</div><div class="kpi-grid">'+kpi(T('Mot Passport','Total Passports','মোট পাসপোর্ট'),fm(total),'gold big',esc(DB.agents.length+T(' agent · ',' agents · ',' এজেন্ট · ')+DB.companies.length+T(' company',' companies',' কোম্পানি')),'data-act="dashSt" data-st=""','🛂')+
-  DB.statuses.map(s=>kpi(stName(s.name),fm(counts[s.name]),kpiTone(s.name),pct(counts[s.name]),'data-act="dashSt" data-st="'+esc(s.name)+'"',statusIcon(s.name))).join('')+
+  DB.statuses.map(s=>{const k=stuckBy()[s.name]||0;return kpi(stName(s.name),fm(counts[s.name]),kpiTone(s.name),pct(counts[s.name])+(k?' · <span class="t-warn" title="'+esc(T(stuckDays()+' diner beshi ei status e',' more than '+stuckDays()+' days in this status',stuckDays()+' দিনের বেশি এই স্ট্যাটাসে'))+'">⏳ '+k+'</span>':''),'data-act="dashSt" data-st="'+esc(s.name)+'"',statusIcon(s.name))}).join('')+
   (other?kpi(T('Status nei / onno','Other / Unset','স্ট্যাটাস নেই / অন্য'),fm(other),'',esc(T('List e nei emon status','Status not in the list','তালিকায় নেই এমন স্ট্যাটাস')),'','❔'):'')+'</div>'}
- if(canDash('dash.funnel')&&DB.passports.length)h+=pipelineCard();
+ if(canDash('dash.funnel')&&DB.passports.length)h+=agingCard();
  if(canDash('dash.money')){const cin=sum(DB.accounts,a=>a.cashIn),cout=sum(DB.accounts,a=>a.cashOut);let con=0,paid=0;for(const s of coStats().values()){con+=s.contract;paid+=s.paid}const due=r2(con-paid);let agb=0;for(const s of agStats().values())agb+=s.balance;
   h+='<div class="dash-sec">'+esc(T('Taka-poisar Hishab','Financial Summary','টাকা-পয়সার হিসাব'))+'</div><div class="kpi-grid">'+kpi(T('Mot Cash In','Total Cash In','মোট ক্যাশ ইন'),fm(cin),'green',esc(T('BDT joma','BDT received','BDT জমা')),'data-act="go" data-p="accounts"','📥')+kpi(T('Mot Cash Out','Total Cash Out','মোট ক্যাশ আউট'),fm(cout),'red',esc(T('BDT khoroch','BDT paid','BDT খরচ')),'data-act="go" data-p="accounts"','📤')+
    kpi(T('Cash e ache','Cash in Hand','নগদ আছে'),fm(totalByType('cash')),'blue',esc(T('Shob cash account','All cash accounts','সব নগদ অ্যাকাউন্ট')),canView('cashbank')?'data-act="go" data-p="cashbank"':'','💵')+
@@ -1819,16 +1818,17 @@ function ppFiltered(){const f=ST.pf||{},ms=monthStart(today()),days=S().expDays|
   if(f.al==='nopass'&&String(p.passportNo||'').trim())return false;
   if(f.al==='docexp'&&!(isActivePP(p)&&docExpList(p).some(x=>x.left!==null&&x.left<=docExpDays())))return false;
   if(f.al==='instdue'&&!(p.status!=='Cancelled'&&Array.isArray(p.inst)&&p.inst.length&&candAcc(p).overdue>0.005))return false;
-  if(f.al==='stuck'){const dd=stDays(p);if(!(isActivePP(p)&&dd!==null&&dd>stuckDays()))return false}return true})
+  if(f.al==='stuck'){const dd=stDays(p);if(!(isActivePP(p)&&dd!==null&&dd>stuckDays()))return false}
+  if(f.age){const dd=stDays(p),b=AGE_B.find(x=>x[0]===f.age);if(!b||!isActivePP(p)||dd===null||dd<b[1]||dd>b[2])return false}return true})
  .sort((a,b)=>String(b.entryDate||'').localeCompare(String(a.entryDate||''))||String(b.ut||'').localeCompare(String(a.ut||'')))}
-const ppFiltersActive=()=>{const f=ST.pf||{};return !!(f.st||f.co||f.ag||f.jc||f.dc||f.al||lvState('passports').q.trim())};
+const ppFiltersActive=()=>{const f=ST.pf||{};return !!(f.st||f.co||f.ag||f.jc||f.dc||f.age||f.al||lvState('passports').q.trim())};
 function cellText(p,f){if(f==='status')return statusPill(p.status);if(f==='customRate')return p.customRate?fm(p.customRate):dash;if(f==='companyName')return p.companyName?esc(p.companyName):dash;if(f==='contractAmount')return p.contractAmount?fm(p.contractAmount):dash;return ''}
 const ED_FIELDS=['status','customRate','companyName','contractAmount'];
 const ED_LABEL=()=>({status:T('Status','Status','স্ট্যাটাস'),customRate:T('Custom Rate','Custom Rate','কাস্টম রেট'),companyName:T('Company','Company','কোম্পানি'),contractAmount:T('Contract','Contract Amount','চুক্তির পরিমাণ')});
 const cellHTML=(p,f)=>can('passport.edit')&&!_docEN?'<span class="ed" tabindex="0" data-id="'+esc(p.id)+'" data-f="'+f+'" title="'+esc(T('Click kore edit korun: ','Click to edit: ','ক্লিক করে এডিট করুন: ')+ED_LABEL()[f])+'">'+cellText(p,f)+'</span>':cellText(p,f);
 PAGES.passports=()=>{const f=ST.pf||(ST.pf={}),rows=ppFiltered(),sel=ST.sel.passports||(ST.sel.passports=new Set());
  const optF=(k,list,all)=>'<select data-pf="'+k+'" title="'+esc(all)+'"><option value="">'+esc(all)+'</option>'+list.map(o=>'<option value="'+esc(o[0])+'"'+(f[k]===o[0]?' selected':'')+'>'+esc(o[1])+'</option>').join('')+'</select>';
- const filters=optF('st',DB.statuses.map(s=>[s.name,stName(s.name)]),T('Shob Status','All Status','সব স্ট্যাটাস'))+optF('co',DB.companies.map(c=>[c.name,c.name]),T('Shob Company','All Companies','সব কোম্পানি'))+optF('ag',DB.agents.map(a=>[a.name,a.name]),T('Shob Agent','All Agents','সব এজেন্ট'))+optF('jc',DB.jobCategories.map(j=>[j.name,j.name]),T('Shob Category','All Categories','সব ক্যাটাগরি'))+optF('dc',[['miss',T('📎 Kagoj baki','📎 Documents missing','📎 কাগজ বাকি')],['full',T('✅ Shob kagoj ache','✅ All documents in','✅ সব কাগজ আছে')]],T('Kagoj — shob','Documents — all','কাগজ — সব'));
+ const filters=optF('st',DB.statuses.map(s=>[s.name,stName(s.name)]),T('Shob Status','All Status','সব স্ট্যাটাস'))+optF('co',DB.companies.map(c=>[c.name,c.name]),T('Shob Company','All Companies','সব কোম্পানি'))+optF('ag',DB.agents.map(a=>[a.name,a.name]),T('Shob Agent','All Agents','সব এজেন্ট'))+optF('jc',DB.jobCategories.map(j=>[j.name,j.name]),T('Shob Category','All Categories','সব ক্যাটাগরি'))+optF('dc',[['miss',T('📎 Kagoj baki','📎 Documents missing','📎 কাগজ বাকি')],['full',T('✅ Shob kagoj ache','✅ All documents in','✅ সব কাগজ আছে')]],T('Kagoj — shob','Documents — all','কাগজ — সব'))+optF('age',AGE_B.map(b=>[b[0],'⏳ '+b[0]+' '+T('din ek status e','days in status','দিন এক স্ট্যাটাসে')]),T('Koto din — shob','Days in status — all','কত দিন — সব'));
  const btns=(can('passport.add')?'<button class="btn sm" data-act="ppAdd">+ '+esc(T('Passport','Passport','পাসপোর্ট'))+'</button>':'')+(can('passport.bulk')?'<button class="btn ghost sm" data-act="ppBulkModal">🔄 '+esc(T('Status — ekshathe','Bulk status','স্ট্যাটাস — একসাথে'))+'</button>':'')+'<button class="btn ghost sm" data-act="flList">✈️ '+esc(T('Flight list','Flights','ফ্লাইট তালিকা'))+'</button>'+(can('passport.import')?'<button class="btn ghost sm" data-act="ppImport">📥 '+esc(T('Import','Import','ইমপোর্ট'))+'</button>':'');
  let pre='';if(f.al)pre+='<div style="margin-bottom:10px"><span class="fchip">'+esc(PF_AL()[f.al]||f.al)+'<span class="x" data-act="pfClear" data-k="al">✕</span></span></div>';
  const selN=Array.from(sel).filter(id=>ppById(id)).length;
@@ -1925,7 +1925,7 @@ Object.assign(ACT,{
  ppBulkDel:()=>ppDelete(Array.from(ST.sel.passports||[]))
 });
 /* Passport list print — landscape, English, filter onujayi */
-function printPassports(L){const rows=L?L.rows:ppFiltered(),f=ST.pf||{},q=lvState('passports').q.trim(),fl=[];if(f.st)fl.push('Status: '+f.st);if(f.co)fl.push('Company: '+f.co);if(f.ag)fl.push('Agent: '+f.ag);if(f.jc)fl.push('Category: '+f.jc);if(f.dc)fl.push(f.dc==='miss'?'Documents missing':'All documents in');if(f.al)fl.push(PF_AL()[f.al]||f.al);if(q)fl.push('Search: "'+q+'"');
+function printPassports(L){const rows=L?L.rows:ppFiltered(),f=ST.pf||{},q=lvState('passports').q.trim(),fl=[];if(f.st)fl.push('Status: '+f.st);if(f.co)fl.push('Company: '+f.co);if(f.ag)fl.push('Agent: '+f.ag);if(f.jc)fl.push('Category: '+f.jc);if(f.dc)fl.push(f.dc==='miss'?'Documents missing':'All documents in');if(f.age)fl.push('In status for '+f.age+' days');if(f.al)fl.push(PF_AL()[f.al]||f.al);if(q)fl.push('Search: "'+q+'"');
  const con=sum(rows,p=>p.contractAmount),flown=rows.filter(p=>p.status===FLOWN).length;
  const H=[{h:'Entry',w:'58px'},{h:'Candidate',html:1},{h:'Passport'},{h:'Mobile'},{h:'Category'},{h:'Agent'},{h:'Status'},{h:'Custom Rate',r:1},{h:'Company'},{h:'Contract',r:1},{h:'Flight'}];
  const R=rows.map(p=>[fd(p.entryDate),esc(p.candidateName)+(p.fatherName?'<span class="sm">S/O '+esc(p.fatherName)+'</span>':''),p.passportNo||'',p.mobile||'',p.jobCategory||'',p.agentName||'',p.status||'',p.customRate?fm(p.customRate):'',p.companyName||'',p.contractAmount?fm(p.contractAmount):'',fd(p.flightDate)]);
@@ -3719,6 +3719,9 @@ Object.assign(ACT,{
    GUIDE (F1) — shuchipotro (index) shoho, Changelog, Shortcut, About
    ===================================================================== */
 const CHANGELOG=()=>[
+ {v:'4.7.1',d:'2026-11-11',items:[
+  T('📊 Dashboard e "Recruitment Pipeline" ar "Passport Status" ek-i jinish (kon status e koto jon) dekhacchilo — pipeline shoriye notun "⏳ Koto din dhore pore ache": protita chalu status e 0–15 / 16–30 / 31–60 / 60+ din dhore koto jon, gore koto din, shobcheye beshi koto din. Lal ghor = onek din atke; number e click → oi list. Status card e-o "⏳ koto jon 30+ din".','📊 The Dashboard\'s "Recruitment Pipeline" showed the same thing as "Passport Status" (how many in each status) — the pipeline is replaced by "⏳ How long they have been waiting": for each status still in process, how many have waited 0–15 / 16–30 / 31–60 / 60+ days, the average and the longest. Red cells = waiting a long time; click a number for that list. Status cards also show "⏳ how many 30+ days".','📊 ড্যাশবোর্ডে "রিক্রুটমেন্ট পাইপলাইন" আর "পাসপোর্ট স্ট্যাটাস" একই জিনিস (কোন স্ট্যাটাসে কতজন) দেখাচ্ছিল — পাইপলাইন সরিয়ে নতুন "⏳ কত দিন ধরে পড়ে আছে": প্রতিটি চালু স্ট্যাটাসে ০–১৫ / ১৬–৩০ / ৩১–৬০ / ৬০+ দিন ধরে কতজন, গড় কত দিন, সবচেয়ে বেশি কত দিন। লাল ঘর = অনেক দিন আটকে; নম্বরে ক্লিক → ওই তালিকা। স্ট্যাটাস কার্ডেও "⏳ কতজন ৩০+ দিন"।'),
+  T('🔎 Passport Tracker e notun filter "Koto din ek status e"; "Return" status ekhon "chalu / atke" hishabe dhora hoy na (Flown / Cancelled er moto).','🔎 New Passport Tracker filter "Days in status"; the "Return" status no longer counts as in process / stuck (like Flown / Cancelled).','🔎 পাসপোর্ট ট্র্যাকারে নতুন ফিল্টার "কত দিন এক স্ট্যাটাসে"; "Return" স্ট্যাটাস এখন "চালু / আটকে" হিসাবে ধরা হয় না (Flown / Cancelled-এর মতো)।')]},
  {v:'4.7.0',d:'2026-11-10',items:[
   T('🔎 Khuje bachai: Cash In e Agent Advance er agent, passport er agent / company / job category, category, status — 6 tar beshi option er shob dropdown e nam (ba phone number) likhlei mil gulo dekhay; dui shobdo likhleo hoy (jemon \'hridoy syl\'). ↑ ↓ diye bachai, Enter e porer ghor, Esc e list bondho. Page er filter e 10+ option thakle sheta-o.','🔎 Search to pick: the agent in Cash In → Agent Advance, the passport agent / company / job category, categories, statuses — every dropdown with more than 6 choices shows matches as you type a name (or phone number); two words work too (e.g. \'hridoy syl\'). ↑ ↓ to choose, Enter for the next field, Esc closes the list. Page filters with 10+ choices too.','🔎 খুঁজে বাছাই: ক্যাশ ইনে এজেন্ট অ্যাডভান্সের এজেন্ট, পাসপোর্টের এজেন্ট / কোম্পানি / জব ক্যাটাগরি, ক্যাটাগরি, স্ট্যাটাস — ৬টির বেশি অপশনের সব ড্রপডাউনে নাম (বা ফোন নম্বর) লিখলেই মিলগুলো দেখায়; দুই শব্দ লিখলেও হয় (যেমন \'hridoy syl\')। ↑ ↓ দিয়ে বাছাই, Enter-এ পরের ঘর, Esc-এ তালিকা বন্ধ। পেজের ফিল্টারে ১০+ অপশন থাকলে সেটাও।'),
   T('💬 Taka likhlei niche kothay dekhay (= 1,20,000 · One Lakh Twenty Thousand) — ekta shunno beshi / kom er bhul sathe sathe chokhe pore. Tarikh er niche \'Aj · Gotokal\'. Mobile number 11 ghor kina dekhay. Passport no likhte likhtei \'age theke ache\' kina janay.','💬 Amounts are shown in words as you type (= 1,20,000 · One Lakh Twenty Thousand) — an extra or missing zero is spotted at once. \'Today · Yesterday\' under date fields. Mobile numbers are checked for 11 digits. While typing a passport number you are told if it already exists.','💬 টাকা লিখলেই নিচে কথায় দেখায় (= 1,20,000 · One Lakh Twenty Thousand) — একটা শূন্য বেশি / কম ভুল সাথে সাথে চোখে পড়ে। তারিখের নিচে \'আজ · গতকাল\'। মোবাইল নম্বর ১১ ঘর কিনা দেখায়। পাসপোর্ট নম্বর লিখতে লিখতেই \'আগে থেকে আছে\' কিনা জানায়।'),
@@ -4102,8 +4105,8 @@ function cfClose(yes){const bg=document.getElementById('cfBg');if(!bg||!bg.class
 function askConfirm(msg,o){return new Promise(res=>cfShow(Object.assign({msg},o||{},{onYes:()=>res(true),onNo:()=>res(false)})))}
 /* je kaj (button) confirm chailo, "Ha" dile shei kaj ta abar chalano hoy — tokhon ei prosno ta "ha" dhore */
 window.confirm=function(msg){msg=String(msg==null?'':msg);if(_cfOKs&&_cfOKs.has(msg))return true;
- let a=window._curAct;const mb=$('#modalBg');if((!a||!ACT[a.a])&&MODAL&&mb&&mb.classList.contains('show'))a={a:'saveModal',d:{}};if(!a||!CU||!ACT[a.a])return _nConfirm(msg);
- const ok=new Set(_cfOKs||[]);cfShow({msg,onYes:()=>{ok.add(msg);const p=window._curAct,po=_cfOKs;window._curAct=a;_cfOKs=ok;let isAsync=false;try{const r=ACT[a.a](Object.assign({},a.d),a.el||null);if(r&&typeof r.then==='function'){isAsync=true;r.finally(()=>{if(a.a!=='saveModal')_cfOKs=po;window._curAct=p})}}catch(e){errLog('act:'+a.a,e)}finally{if(!isAsync){window._curAct=p;if(a.a!=='saveModal')_cfOKs=po}}}});return false};
+ let a=window._curAct;if((!a||!ACT[a.a])&&MODAL&&$('#modalBg').classList.contains('show'))a={a:'saveModal',d:{}};if(!a||!CU||!ACT[a.a])return _nConfirm(msg);
+ const ok=new Set(_cfOKs||[]);cfShow({msg,onYes:()=>{ok.add(msg);const p=window._curAct,po=_cfOKs;window._curAct=a;_cfOKs=ok;try{const r=ACT[a.a](Object.assign({},a.d),a.el||null);if(r&&typeof r.then==='function')r.finally(()=>{_cfOKs=po})}catch(e){errLog('act:'+a.a,e)}finally{window._curAct=p;if(a.a!=='saveModal')_cfOKs=po}}});return false};
 window.alert=function(msg){if(!CU||!document.body)return _nAlert(msg);cfShow({msg:String(msg==null?'':msg),alert:true})};
 document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.closest('[data-cf]');if(b){ev.preventDefault();ev.stopPropagation();cfClose(b.dataset.cf==='1')}},true);
 document.addEventListener('keydown',ev=>{if(!document.querySelector('#cfBg.show'))return;
@@ -4141,7 +4144,7 @@ function draftRestore(d){try{if(d.page&&canView(d.page)){ST.page=d.page;render()
  _mDirty=true;markUnsaved();draftSave();toast(T('Ager lekha ferot ana holo — mile niye Save korun','Your earlier entries are back — check them and press Save','আগের লেখা ফেরত আনা হলো — মিলিয়ে নিয়ে সেভ করুন'))}catch(e){errLog('draftRestore',e);draftClear()}}
 /* click dispatcher: kon kaj chalche (confirm replay) ar kon kaj form khullo (draft) */
 document.addEventListener('click',ev=>{const b=ev.target.closest&&ev.target.closest('[data-act]');if(!b||b.disabled||!ACT[b.dataset.act])return;const a=b.dataset.act;
- if(['closeModal','saveModal'].includes(a)||b.closest('#cfBg'))return;const wasOpen=!!($('#modalBg')&&$('#modalBg').classList.contains('show'));window._curAct={a,d:Object.assign({},b.dataset),el:b};
+ if(['closeModal','saveModal'].includes(a)||b.closest('#cfBg'))return;const wasOpen=$('#modalBg').classList.contains('show');window._curAct={a,d:Object.assign({},b.dataset),el:b};
  setTimeout(()=>{window._curAct=null;if(!wasOpen&&modalIsForm()&&!MODAL_SRC){const d=Object.assign({},b.dataset);delete d.act;MODAL_SRC={a,d}}},0)},true);
 
 /* ---------- 5) Auto Logout er 1 minute age countdown + onno tab e logout ---------- */
@@ -4215,7 +4218,7 @@ async function sbList(prefix){const c=syncCfg();if(isGas(c))return(await gasCall
  if(!res.ok)throw new Error('list '+res.status);const j=await res.json();return(Array.isArray(j)?j:[]).map(x=>x&&x.name).filter(Boolean)}
 async function sbDeleteFiles(paths){const c=syncCfg();if(isGas(c)){await gasCall('fdel',{paths});return}const res=await fetch(sbBase(c)+'/storage/v1/object/'+FILE_BUCKET,{method:'DELETE',headers:{'apikey':c.key,'Authorization':'Bearer '+c.key,'Content-Type':'application/json'},body:JSON.stringify({prefixes:paths})});if(!res.ok)throw new Error('delete '+res.status)}
 async function gzBytes(str){if(typeof CompressionStream==='undefined')return{b:new TextEncoder().encode(str),gz:false};const cs=new Blob([str]).stream().pipeThrough(new CompressionStream('gzip'));return{b:new Uint8Array(await new Response(cs).arrayBuffer()),gz:true}}
-async function gunzipText(buf,gz){if(!gz)return new TextDecoder().decode(buf);if(typeof DecompressionStream==='undefined')throw new Error(T('Ei browser e decompress kora jay na (DecompressionStream nei)','This browser cannot decompress backups (DecompressionStream missing)','এই ব্রাউজারে ব্যাকআপ ডিকম্প্রেস করা যায় না (DecompressionStream নেই)'));const ds=new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'));return await new Response(ds).text()}
+async function gunzipText(buf,gz){if(!gz)return new TextDecoder().decode(buf);const ds=new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'));return await new Response(ds).text()}
 const cbkOn=()=>S().cloudBackup!=='0';
 const cbkDir=()=>cloudOrg()+'/backups';
 function cbkPayload(){const d=clone(DB);delete d._savedAt;d.settings.sync={provider:'sb',url:'',key:'',org:'',secret:'',gasUrl:'',gasToken:'',deviceCode:syncCfg().deviceCode||'',enabled:false,auto:true};d.syncMeta={vseq:(DB.syncMeta||{}).vseq||{}};return{app:'AMAZ Manpower',v:4,ver:APP.ver,exportedAt:new Date().toISOString(),data:d}}
@@ -4392,7 +4395,7 @@ let _stSeen=null;
 function stInit(){if(!DB)return;_stSeen=new Map(DB.passports.map(p=>[p.id,String(p.status||'')]))}
 function stTrack(){if(!DB)return;if(!_stSeen){stInit();return}const now=new Date().toISOString(),by=CU?CU.username:'';
  for(const p of DB.passports){const cur=String(p.status||''),prev=_stSeen.get(p.id);
-  if(prev===undefined){if(!Array.isArray(p.stHist)||!p.stHist.length)p.stHist=[{s:cur,at:now,by}]}
+  if(prev===undefined){if(!Array.isArray(p.stHist)||!p.stHist.length){const ed=validDate(p.entryDate||'')&&p.entryDate<now.slice(0,10)?p.entryDate+'T00:00:00.000Z':now;p.stHist=[{s:cur,at:ed,by}]}}   // pichoner entry hole oi din theke gona
   else if(prev!==cur){if(!Array.isArray(p.stHist))p.stHist=[];p.stHist.push({s:cur,at:now,by});if(p.stHist.length>60)p.stHist=p.stHist.slice(-60)}
   _stSeen.set(p.id,cur)}}
 {const _sv=save;save=function(...c){if(!c.length||c.includes('passports')){try{stTrack()}catch(e){errLog('stTrack',e)}}return _sv.apply(this,arguments)}}
@@ -4403,7 +4406,7 @@ function stHistOf(p){const H=Array.isArray(p.stHist)?p.stHist.filter(x=>x&&x.at)
 function stSince(p){const H=stHistOf(p);for(let i=H.length-1;i>=0;i--)if(H[i].s===p.status)return H[i].at;return p.entryDate?p.entryDate+'T00:00:00.000Z':''}
 function stDays(p){const s=stSince(p);if(!s)return null;return Math.max(0,Math.floor((Date.now()-Date.parse(s))/864e5))}
 const stuckDays=()=>num(S().stuckDays)||30;
-const isActivePP=p=>p.status!==FLOWN&&p.status!=='Cancelled';
+const isActivePP=p=>p.status!==FLOWN&&p.status!=='Cancelled'&&p.status!=='Return';   // Return = fire esheche — ar process hoy na
 
 /* ---------- 3) KAGOJ ER MEYAD ---------- */
 const docExpDays=()=>num(S().docExpDays)||30;
@@ -4500,7 +4503,7 @@ function mrzParse(text){const lines=String(text||'').toUpperCase().replace(/[«�
  const ok={pno:mrzCheck(pno)===pnoC,dob:mrzCheck(dob)===dobC,exp:mrzCheck(exp)===expC};
  return{passportNo:pno.replace(/<+/g,''),country:l1.slice(2,5).replace(/</g,''),nationality:l2.slice(10,13).replace(/</g,''),sex:l2[20]==='<'?'':l2[20],surname:sur,given:giv,candidateName:[giv,sur].filter(Boolean).join(' ').replace(/\s+/g,' '),dob:mrzDate(dob,false),expireDate:mrzDate(exp,true),ok,valid:ok.pno&&ok.dob&&ok.exp,raw:[l1,l2]}}
 const TESS_URL='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
-async function mrzFromImage(du){if(!window.Tesseract&&!navigator.onLine)throw new Error(T('Internet connection nei — prothom bar OCR library load korte internet lagbe','No internet connection — internet is required to load OCR library the first time','ইন্টারনেট কানেকশন নেই — প্রথমবার OCR লাইব্রেরি লোড করতে ইন্টারনেট লাগবে'));await loadScriptOnce(TESS_URL);if(!window.Tesseract)throw new Error('OCR');
+async function mrzFromImage(du){await loadScriptOnce(TESS_URL);if(!window.Tesseract)throw new Error('OCR');
  const crop=await new Promise(res=>{const im=new Image();im.onload=()=>{const W=Math.min(2000,im.width),sc=W/im.width,H=Math.round(im.height*sc),c=document.createElement('canvas');c.width=W;c.height=Math.round(H*.38);const g=c.getContext('2d');g.filter='grayscale(1) contrast(1.6)';g.drawImage(im,0,-Math.round(H*.62),W,H);res(c.toDataURL('image/png'))};im.onerror=()=>res(du);im.src=du});
  const run=async src=>{const r=await Tesseract.recognize(src,'eng',{tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<'});return mrzParse(r&&r.data&&r.data.text)};
  let m=await run(crop);if(!m||!m.valid){const m2=await run(du);if(m2&&(!m||m2.valid))m=m2}return m}
@@ -4589,12 +4592,20 @@ function recXlsx(){if(!need('report.export'))return;const R=ST.rcR||{fr:today().
  for(const x of D.co)rows.push(['Company',x.k,x.total,x.newR,x.fr,x.active,x.docs,r2(x.con-x.paid)]);for(const x of D.ag)rows.push(['Agent',x.k,x.total,x.newR,x.fr,x.active,x.docs,x.k==='—'?'':agentStat(x.k).balance]);
  download(xlsxBlob('Recruitment',['Section','Name','Count / New','Flown / Avg days','Cancelled / Stuck / Flown(period)','In process','Docs complete','Due / Balance'],rows),'Recruitment_Report_'+R.fr+'_'+R.to+'.xlsx')}
 
-/* ---------- 12) DASHBOARD PIPELINE ---------- */
-function pipelineCard(){const st=DB.statuses.filter(s=>s.name!=='Cancelled'&&s.name!=='Medical Unfit'),n={},stuck={};let mx=1;
- for(const p of DB.passports){n[p.status]=(n[p.status]||0)+1;if(isActivePP(p)){const d=stDays(p);if(d!==null&&d>stuckDays())stuck[p.status]=(stuck[p.status]||0)+1}}
- for(const s of st)mx=Math.max(mx,n[s.name]||0);
- return '<div class="dash-sec">'+esc(T('Recruitment Pipeline','Recruitment Pipeline','রিক্রুটমেন্ট পাইপলাইন'))+'</div><div class="card pipe">'+st.map(s=>{const c=n[s.name]||0,k=stuck[s.name]||0;return '<div class="pipe-r" data-act="dashSt" data-st="'+esc(s.name)+'" title="'+esc(stName(s.name)+': '+c+(k?' · '+k+T(' jon '+stuckDays()+' diner beshi atke',' stuck over '+stuckDays()+' days',' জন '+stuckDays()+' দিনের বেশি আটকে'):''))+'"><span class="pipe-l">'+statusIcon(s.name)+' '+esc(stName(s.name))+'</span><span class="pipe-b"><i class="'+statusCls(s.name)+'" style="width:'+Math.max(c?3:0,Math.round(c/mx*100))+'%"></i></span><b>'+c+'</b>'+(k?'<em title="stuck">⏳'+k+'</em>':'<em></em>')+'</div>'}).join('')+'</div>'}
-
+/* ---------- 12) DASHBOARD — KOTO DIN DHORE PORE ACHE (Aging) ----------
+   Status card gulo bole "kon status e koto jon"; ei table bole "koto din dhore" — tai duto ek jinish na. */
+const AGE_B=[['0-15',0,15],['16-30',16,30],['31-60',31,60],['60+',61,1e9]];
+function stuckBy(){return memo('stuckBy',()=>{const o={},lim=stuckDays();for(const p of DB.passports){if(!isActivePP(p))continue;const d=stDays(p);if(d!==null&&d>lim)o[p.status]=(o[p.status]||0)+1}return o})}
+function agingData(){return memo('aging',()=>{const rows=new Map(),tot={b:[0,0,0,0],n:0,sum:0,c:0};
+ for(const p of DB.passports){if(!isActivePP(p))continue;const d=stDays(p);let r=rows.get(p.status);if(!r)rows.set(p.status,r={s:p.status,b:[0,0,0,0],n:0,sum:0,c:0,max:0});r.n++;tot.n++;
+  if(d===null)continue;const i=AGE_B.findIndex(x=>d>=x[1]&&d<=x[2]);r.b[i]++;tot.b[i]++;r.sum+=d;r.c++;tot.sum+=d;tot.c++;if(d>r.max)r.max=d}
+ const order=DB.statuses.map(s=>s.name),L=Array.from(rows.values()).sort((a,b)=>{const x=order.indexOf(a.s),y=order.indexOf(b.s);return(x<0?99:x)-(y<0?99:y)});return{L,tot}})}
+function agingCard(){const D=agingData();if(!D.tot.n)return '';const avg=r=>r.c?Math.round(r.sum/r.c):0;
+ const cell=(st,i,v)=>'<td class="r ag-c ag'+i+(v?'':' z')+'"'+(v?' data-act="dashAge" data-st="'+esc(st)+'" data-b="'+AGE_B[i][0]+'" title="'+esc(T('List dekhun','Show the list','তালিকা দেখুন'))+'"':'')+'>'+(v||'·')+'</td>';
+ return '<div class="dash-sec">'+esc(T('Koto din dhore pore ache','How long they have been waiting','কত দিন ধরে পড়ে আছে'))+'</div><div class="card aging"><div class="note" style="margin:0 0 8px">'+esc(T('Ekhon process e ache emon passport (Flown / Cancelled / Return chara) — ek-i status e koto din dhore. Lal ghor gulo age dekhun; number e click korle oi list khule.','Passports still in process (not Flown / Cancelled / Return) — how many days in their current status. Look at the red cells first; click a number for the list.','এখন প্রসেসে আছে এমন পাসপোর্ট (Flown / Cancelled / Return ছাড়া) — একই স্ট্যাটাসে কত দিন ধরে। লাল ঘরগুলো আগে দেখুন; নম্বরে ক্লিক করলে ওই তালিকা খোলে।'))+'</div>'+
+  '<div class="table-wrap"><table class="ag-t"><thead><tr><th>Status</th>'+AGE_B.map(b=>'<th class="r">'+esc(b[0])+' '+esc(T('din','days','দিন'))+'</th>').join('')+'<th class="r">'+esc(T('Mot','Total','মোট'))+'</th><th class="r">'+esc(T('Gore din','Avg days','গড় দিন'))+'</th><th class="r">'+esc(T('Shobcheye beshi','Longest','সবচেয়ে বেশি'))+'</th></tr></thead><tbody>'+
+  D.L.map(r=>'<tr><td class="nw" data-act="dashSt" data-st="'+esc(r.s)+'" style="cursor:pointer">'+statusIcon(r.s)+' '+esc(stName(r.s)||'—')+'</td>'+r.b.map((v,i)=>cell(r.s,i,v)).join('')+'<td class="r"><b>'+r.n+'</b></td><td class="r">'+avg(r)+'</td><td class="r '+(r.max>60?'t-red':r.max>stuckDays()?'t-warn':'')+'">'+r.max+'</td></tr>').join('')+
+  '</tbody><tfoot><tr><td><b>'+esc(T('Mot','Total','মোট'))+'</b></td>'+D.tot.b.map(v=>'<td class="r"><b>'+v+'</b></td>').join('')+'<td class="r"><b>'+D.tot.n+'</b></td><td class="r"><b>'+avg(D.tot)+'</b></td><td></td></tr></tfoot></table></div></div>'}
 /* ---------- ACTIONS ---------- */
 Object.assign(ACT,{
  ppProfile:d=>ppProfile(d.id),ppProfPrint:d=>printProfile(d.id),
@@ -4623,7 +4634,7 @@ Object.assign(ACT,{
  flList:()=>flightModal(),flOpen:d=>flightModal(d.k),flPrint:d=>printFlight(d.k),flXlsx:d=>flightXlsx(d.k),
  demand:d=>demandModal(d.id),dnPrint:d=>{const ids=Array.from(document.querySelectorAll('[data-dn]:checked')).map(c=>c.dataset.dn);if(!ids.length){mErr(T('Kompokkhe ekjon bachun','Pick at least one worker','কমপক্ষে একজন বাছুন'));return}printDemand(d.id,ids,($('#dnRef')||{}).value||'')},
  agStatusPr:d=>printAgentStatus(d.id),
- rcPrint:()=>printRecruit(),rcXlsx:()=>recXlsx(),
+ rcPrint:()=>printRecruit(),dashAge:d=>{ST.pf={st:d.st||'',age:d.b};lvState('passports').q='';lvState('passports').pg=1;go('passports')},dashAge:d=>{ST.pf={st:d.st||'',age:d.b};go('passports')},rcXlsx:()=>recXlsx(),
  docExpSet:(d,el)=>{}
 });
 /* kagoj er meyad — docs modal er date input */

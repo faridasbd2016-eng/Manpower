@@ -1,1 +1,1 @@
-{"version": "4.7.0", "date": "2026-11-10", "notes": "Dropdown e nam likhe khuje bachai, taka kothay, Save + Notun, muchle Firiye anun, lekhar size, Shuru korar talika", "notes_en": "Type-to-search dropdowns, amounts in words, Save + New, undo delete, text size, getting-started list"}
+{"version": "4.7.1", "date": "2026-11-11", "notes": "Dashboard: Pipeline er bodole 'Koto din dhore pore ache' (0-15 / 16-30 / 31-60 / 60+ din)", "notes_en": "Dashboard: 'How long they have been waiting' (0-15 / 16-30 / 31-60 / 60+ days) replaces the duplicate pipeline"}
