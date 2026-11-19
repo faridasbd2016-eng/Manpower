@@ -898,6 +898,123 @@ html[data-theme="dark"] .nav-item.active:before{background:#3b82f6}
 .cb-clr{right:30px}
 .cb-wrap.cb-inl{min-width:170px}
 .cb-input::placeholder{color:var(--muted)}
+/* =====================================================================
+   v4.9 — MOBILE e APP er MOTO (760px er choto screen; computer ager motoi) — Costing v19.73/74 er hubohu
+   ===================================================================== */
+#bnav,#appmSheet,#ptrInd,.pa-more,.pa-fbtn,#appmFab,#fileOut,.ln-mlogo{display:none}
+@media (max-width:760px){
+  html.appm body{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:contain}
+  html.appm.appm-in body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+  /* niche tab bar */
+  html.appm.appm-in #bnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:300;height:calc(62px + env(safe-area-inset-bottom));padding:4px 4px env(safe-area-inset-bottom);background:var(--card);border-top:1px solid var(--border);box-shadow:0 -6px 22px rgba(15,23,42,.08);transition:transform .22s ease}
+  html.appm.kb-open #bnav,html.appm.appm-modal #bnav{transform:translateY(110%)}
+  #bnav button{position:relative;border:0;background:none;color:var(--muted);font:inherit;font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:0;cursor:pointer;min-width:0}
+  #bnav .bn-ic{width:56px;height:30px;border-radius:16px;display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+  #bnav svg{width:22px;height:22px}#bnav .bn-l{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  #bnav button.on{color:var(--accent)}#bnav button.on .bn-ic{background:var(--acc-bg,rgba(37,99,235,.12))}#bnav button:active .bn-ic{transform:scale(.92)}
+  #bnav .bn-badge{position:absolute;top:3px;left:calc(50% + 6px);min-width:17px;height:17px;padding:0 5px;border-radius:9px;background:var(--danger);color:#fff;font-size:10.5px;font-weight:800;line-height:17px;text-align:center}
+  /* upore er bar — niche scroll e lukay, upore scroll e fere */
+  html.appm .topbar{position:sticky;top:0;z-index:45;transition:transform .22s ease;padding:calc(6px + env(safe-area-inset-top)) 12px 6px !important;min-height:0}
+  html.appm .topbar.tb-hide2{transform:translateY(-110%)}
+  html.appm .topbar h2{font-size:18px !important;font-weight:800}
+  html.appm .topbar .tb-ic{display:none !important}
+  html.appm .topbar .menu-toggle{width:40px;height:40px}
+  html.appm .topbar .user-chip{padding:3px}
+  html.appm .content{padding:12px 12px 90px !important}
+  /* angul er mape */
+  html.appm .app .btn,html.appm .modal .btn{min-height:40px}html.appm .app .btn.sm,html.appm .modal .btn.sm{min-height:36px}
+  html.appm .app input:not([type=checkbox]):not([type=radio]):not([type=range]),html.appm .app select,html.appm .modal input:not([type=checkbox]):not([type=radio]):not([type=range]),html.appm .modal select,html.appm .modal textarea{min-height:42px;font-size:16px}
+  html.appm .btn:active,html.appm .nav-item:active,html.appm .kpi:active{transform:scale(.97)}
+  /* form (modal) puro screen e — bame ← fire jan, niche Save shob shomoy */
+  html.appm .modal-bg{padding:0 !important;align-items:stretch !important;background:var(--bg) !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important}
+  html.appm .modal-bg>.modal{max-width:100% !important;width:100% !important;height:100dvh;max-height:100dvh !important;border-radius:0 !important;border:0 !important;box-shadow:none !important;padding:0 14px !important;animation:appmIn .22s cubic-bezier(.2,.85,.3,1)}
+  @keyframes appmIn{from{transform:translateX(28px);opacity:.4}to{transform:none;opacity:1}}
+  html.appm .modal-bg>.modal:before{display:none !important}
+  html.appm .modal-bg>.modal>h3{position:sticky;top:0;z-index:6;background:var(--card);margin:0 -14px 12px !important;padding:calc(8px + env(safe-area-inset-top)) 12px 8px 4px !important;justify-content:flex-start !important;gap:4px;box-shadow:0 1px 0 var(--border);border-bottom:0 !important;font-size:16.5px !important;font-weight:800}
+  html.appm .modal-bg>.modal>h3>span:not(.x){min-width:0;flex:1}
+  html.appm .modal-bg>.modal>h3 .x{order:-1;font-size:0 !important;width:42px;min-width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--text) !important;background:none !important;border:0 !important}
+  html.appm .modal-bg>.modal>h3 .x::before{content:"\2190";font-size:24px;line-height:1;font-weight:600}
+  html.appm .modal-bg>.modal .modal-close-row{position:sticky;bottom:0;z-index:6;background:var(--card);margin:16px -14px 0 !important;padding:10px 12px calc(10px + env(safe-area-inset-bottom)) !important;box-shadow:0 -6px 18px rgba(15,23,42,.08);border-top:1px solid var(--border)}
+  html.appm .modal-bg>.modal .modal-close-row #mSave,html.appm .modal-bg>.modal .modal-close-row .btn:not(.ghost):last-child{flex:1 1 auto}
+  html.appm .modal-bg>.modal .modal-close-row .modal-err{flex:1 1 100%}
+  /* table → card */
+  html.appm table.m-cards,html.appm table.m-cards tbody{display:block;width:100%}
+  html.appm table.m-cards thead{display:none}
+  html.appm table.m-cards tr{display:flex;flex-direction:column;position:relative;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:10px 14px;margin:0 0 10px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  html.appm table.m-cards tr:hover td,html.appm table.m-cards tr td{background:none !important;box-shadow:none !important}
+  html.appm table.m-cards td{display:flex;justify-content:space-between;align-items:center;gap:12px;border:0 !important;padding:5px 0 !important;text-align:right;min-height:0;white-space:normal}
+  html.appm table.m-cards td::before{content:attr(data-label);color:var(--muted);font-size:12px;font-weight:600;text-align:left;flex:0 0 auto;max-width:48%}
+  html.appm .modal .kbdhint{display:none !important}
+  html.appm table.m-cards td.mc-title{order:-1;display:block;text-align:left;font-size:15px;font-weight:700;padding:2px 0 6px !important;border-bottom:1px solid var(--border) !important;margin-bottom:4px}
+  html.appm table.m-cards td.mc-title::before,html.appm table.m-cards td.mc-act::before,html.appm table.m-cards td.mc-nolab::before{display:none}
+  html.appm table.m-cards td.mc-act{justify-content:flex-end;flex-wrap:wrap;padding-top:8px !important;border-top:1px dashed var(--border) !important;margin-top:4px}
+  html.appm table.m-cards td.mc-empty{display:none}
+  html.appm table.m-cards td.mc-chk{position:absolute;top:12px;right:12px;padding:0 !important;display:block}html.appm table.m-cards td.mc-chk::before{display:none}
+  html.appm table.m-cards tr:has(td.mc-chk) td.mc-title{padding-right:36px !important}
+  html.appm table.m-cards td>*:not(button):not(input):not(select):not(.btn):not(.cb-wrap){max-width:64%;white-space:normal !important;overflow-wrap:anywhere}
+  html.appm table.m-cards td.mc-title>*{max-width:none}
+  html.appm table.m-cards td{width:auto !important;max-width:none !important}html.appm table.m-cards .mc-v{margin-left:auto;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:1px}html.appm table.m-cards .mc-v>.sub2:empty,html.appm table.m-cards td .sub2{font-size:11.5px}
+  html.appm table.m-cards tfoot{display:block}html.appm table.m-cards tfoot tr{background:var(--card2)}
+  html.appm .table-wrap:has(>table.m-cards){overflow:visible;border:0;background:none;box-shadow:none}
+  html.appm table.m-cards tr:active{transform:scale(.99)}
+  /* "⋯ Aro" o Filter */
+  html.appm .pa-hid{display:none !important}html.appm .pa-more,html.appm .pa-fbtn{display:inline-flex !important}
+  html.appm .pa-fbtn.on b{background:var(--accent);color:#fff;border-radius:9px;padding:0 6px;margin-left:4px;font-size:11px}
+  html.appm .lv-bar .pa-flt,html.appm .toolbar .pa-flt{display:none !important}
+  html.appm .lv-bar.flt-open .pa-flt,html.appm .toolbar.flt-open .pa-flt{display:block !important;flex:1 1 100% !important;width:100% !important;max-width:none !important}
+  html.appm .lv-bar>input,html.appm .lv-bar .search,html.appm .lv-bar .srch{flex:1 1 100% !important;max-width:none !important}
+  /* niche theke otha menu */
+  #appmSheet.open,#fileOut.open{display:block;position:fixed;inset:0;z-index:100500;background:rgba(10,16,28,.42);animation:fadeIn .15s ease-out}
+  #appmSheet .sh,#fileOut .fo{position:absolute;left:0;right:0;bottom:0;max-height:80vh;overflow:auto;background:var(--card);color:var(--text);border-radius:22px 22px 0 0;padding:8px 8px calc(12px + env(safe-area-inset-bottom));animation:shUp .22s cubic-bezier(.2,.85,.3,1)}
+  @keyframes shUp{from{transform:translateY(100%)}to{transform:none}}
+  #appmSheet .sh-grab,#fileOut .sh-grab{width:40px;height:5px;border-radius:3px;background:var(--border2);margin:4px auto 8px}
+  #appmSheet .sh-t{font-size:13px;font-weight:700;color:var(--muted);padding:4px 14px 8px}
+  #appmSheet .sh-i{display:flex;align-items:center;gap:12px;width:100%;border:0;background:none;color:var(--text);font:inherit;font-size:15px;text-align:left;padding:13px 16px;border-radius:12px;cursor:pointer}
+  #appmSheet .sh-i:active,#appmSheet .sh-i.on{background:var(--card2)}#appmSheet .sh-i.on{color:var(--accent);font-weight:700}#appmSheet .sh-i.danger{color:var(--danger)}#appmSheet .sh-i.info{cursor:default}
+  #appmSheet .sh-sep{height:1px;background:var(--border);margin:6px 10px}
+  #fileOut .fo{padding:8px 16px calc(16px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:9px}
+  #fileOut .fo-t{font-size:16px;font-weight:800}#fileOut .fo-n{word-break:break-all;font-size:13px;margin-bottom:4px}
+  #fileOut .btn{width:100%;justify-content:center;min-height:46px;text-decoration:none}#fileOut .fo-h{font-size:12px;color:var(--muted);line-height:1.5;margin-top:4px}
+  /* tene refresh */
+  #ptrInd{display:flex;position:fixed;left:50%;top:0;z-index:95;width:40px;height:40px;margin-left:-20px;border-radius:50%;background:var(--card);box-shadow:0 4px 14px rgba(0,0,0,.18);align-items:center;justify-content:center;color:var(--accent);transform:translateY(-60px);transition:transform .15s;pointer-events:none}
+  #ptrInd svg{width:20px;height:20px}#ptrInd.spin svg{animation:ptrSpin .8s linear infinite}@keyframes ptrSpin{to{transform:rotate(360deg)}}
+  /* FAB */
+  html.appm.appm-in #appmFab.on{display:inline-flex;position:fixed;right:16px;bottom:calc(76px + env(safe-area-inset-bottom));z-index:299;height:56px;min-width:56px;padding:0 20px 0 16px;gap:8px;align-items:center;justify-content:center;border:0;border-radius:18px;background:var(--accent);color:#fff;font:inherit;font-size:15px;font-weight:800;box-shadow:0 10px 24px rgba(37,99,235,.35),0 3px 8px rgba(0,0,0,.15);cursor:pointer;transition:padding .2s,transform .2s,bottom .22s}
+  html.appm.appm-in #appmFab svg{width:24px;height:24px;flex:none}
+  html.appm.appm-in #appmFab .fl{max-width:150px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;transition:max-width .2s,opacity .2s}
+  html.appm.appm-in #appmFab.mini{padding:0}html.appm.appm-in #appmFab.mini .fl{max-width:0;opacity:0}html.appm.appm-in #appmFab:active{transform:scale(.94)}
+  html.appm.kb-open #appmFab,html.appm.appm-modal #appmFab{display:none !important}
+  /* toast / undo / bulk bar — niche bar er upore */
+  html.appm.appm-in .toast-act,html.appm.appm-in #toast,html.appm.appm-in .ver-bar{bottom:calc(76px + env(safe-area-inset-bottom)) !important}
+  html.appm .toast-act{left:12px !important;right:12px !important;transform:translate(0,140%) !important;max-width:none !important}html.appm .toast-act.show{transform:none !important}
+  html.appm.appm-in .bulkbar{position:fixed;left:8px;right:8px;bottom:calc(68px + env(safe-area-inset-bottom));z-index:290;margin:0;box-shadow:0 10px 30px rgba(15,23,42,.2);background:var(--card)}
+  html.appm.appm-in body:has(.bulkbar) #appmFab{display:none !important}
+  /* tab / chip shari pashe scroll, scrollbar chara */
+  html.appm .content .tabs,html.appm .content .seg{flex-wrap:nowrap !important;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;max-width:100%}
+  html.appm .content .tabs::-webkit-scrollbar,html.appm .content .seg::-webkit-scrollbar{display:none}
+  html.appm .content .tabs>*,html.appm .content .seg>*{flex:0 0 auto;scroll-snap-align:start}
+  html.appm .content>*{animation:pgIn .2s ease-out}@keyframes pgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  /* install card */
+  html.appm .ap-inst{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid #bfdbfe}html.appm .ap-inst>div{flex:1;min-width:0}html.appm .ap-inst .sub2{display:block}html.appm .ap-inst-ic{font-size:26px}
+  /* ---- Login: nijer Boarding Pass theme rekhe mobile e shajano (Visa Renewal er moto) ---- */
+  html .login-screen{justify-content:flex-start !important;gap:16px !important;padding:calc(62px + env(safe-area-inset-top)) 16px calc(22px + env(safe-area-inset-bottom)) !important;min-height:100dvh;overflow-y:auto}
+  html .login-screen .lg-lang{top:calc(10px + env(safe-area-inset-top)) !important;right:12px !important}
+  html .login-screen .lgHero{width:100%;max-width:460px;margin:0 auto !important;text-align:center}
+  html .login-screen .lgHb{justify-content:center !important;gap:12px}
+  html .login-screen .lgHb .lg{width:52px !important;height:52px !important;font-size:12.5px !important;border-radius:15px !important}
+  html .login-screen .lgHb b{font-size:21px !important}
+  html .login-screen .lgHb span{font-size:9.5px !important;letter-spacing:.9px !important}
+  html .login-screen .lgFlow{display:flex !important;flex-wrap:nowrap !important;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;gap:6px !important;margin:14px -16px 0 !important;padding:0 16px 2px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent);mask-image:linear-gradient(90deg,transparent,#000 16px,#000 calc(100% - 16px),transparent)}
+  html .login-screen .lgFlow::-webkit-scrollbar{display:none}
+  html .login-screen .lgFlow>*{flex:0 0 auto;font-size:11.5px !important}
+  html .login-screen .lgFlow span{padding:4px 11px !important}
+  html .login-screen .login-box{position:relative;z-index:2;width:100% !important;max-width:460px !important;margin:0 auto !important;border-radius:22px !important}
+  html .login-screen .login-box input:not([type=checkbox]){height:50px !important;font-size:16px !important;border-radius:12px !important}
+  html .login-screen .login-box .btn{min-height:52px !important;font-size:16px !important;border-radius:14px !important}
+  html .login-screen .login-box .btn.ghost{min-height:46px !important;font-size:13.5px !important}
+  html .login-screen .login-box [data-act=forgot]{padding:8px 0}
+  html .login-screen .lgScene{height:34% !important;opacity:.55 !important}
+}
 </style>
 </head>
 <body>
@@ -1075,7 +1192,7 @@ const T=(s,e,b)=>{if(LG===1||_docEN)return e;if(LG===2)return b===undefined?e:b;
 const enDoc=f=>function(){const o=_docEN;_docEN=true;try{return f.apply(this,arguments)}finally{_docEN=o}};
 try{document.documentElement.lang=LG===2?'bn':'en'}catch(e){}
 
-const APP={name:'AMAZ Manpower',ver:'4.8.0',build:'b2026.11.11'};
+const APP={name:'AMAZ Manpower',ver:'4.9.0',build:'b2026.11.19'};
 const IDB_NAME='amaz_manpower_db',IDB_VER=4;
 const COLLS=['passports','accounts','agents','companies','jobCategories','statuses','categories','users','cashAccounts','transfers','loanParties','vkeys','dayCloses','recons','files','loginLog','bin','tasks','staff','staffTx','mrLocks','yearCloses'];
 const LS_V3='amaz_manpower_v1',LS_V4='amaz_mp_v4';
@@ -3775,6 +3892,12 @@ Object.assign(ACT,{
    GUIDE (F1) — shuchipotro (index) shoho, Changelog, Shortcut, About
    ===================================================================== */
 const CHANGELOG=()=>[
+ {v:'4.9.0',d:'2026-11-19',items:[
+  T('📱 Mobile e ekhon ashol App er moto (Costing er hubohu): niche 5 ta tab — Home, Passport, Hishab, Kaj (deri hoye jaoa kaj er shongkha shoho), Aro (shob menu + Sync, Voucher verify, Bhasha, Light/Dark, Guide, Account, Logout). Computer version e kono bodol nei.','📱 On phones it now works like a real app (same as Costing): 5 tabs at the bottom — Home, Passport, Accounts, Tasks (with overdue count), More (all menus + Sync, Voucher verify, Language, Light/Dark, Guide, Account, Log out). The computer version is unchanged.','📱 মোবাইলে এখন আসল অ্যাপের মতো (Costing এর হুবহু): নিচে ৫টা ট্যাব — হোম, পাসপোর্ট, হিসাব, কাজ (দেরি হওয়া কাজের সংখ্যা সহ), আরো (সব মেনু + সিঙ্ক, ভাউচার যাচাই, ভাষা, লাইট/ডার্ক, গাইড, অ্যাকাউন্ট, লগআউট)। কম্পিউটার ভার্সনে কোনো বদল নেই।'),
+  T('◀️ Phone er Back button: age form / menu / download box bondho kore, tarpor ager page e fere. Form puro screen e khule — upore ← fire jan, niche Save shob shomoy dekha jay.','◀️ Phone Back button: first closes the form / menu / download box, then goes to the previous page. Forms open full screen — ← at the top to go back, Save always visible at the bottom.','◀️ ফোনের ব্যাক বাটন: আগে ফর্ম / মেনু / ডাউনলোড বক্স বন্ধ করে, তারপর আগের পেজে ফেরে। ফর্ম পুরো স্ক্রিনে খোলে — উপরে ← ফিরে যান, নিচে Save সবসময় দেখা যায়।'),
+  T('🗂️ Table gulo mobile e card hoye dekhay (Passport, Agent, Company, Hishab, Cash & Bank, Loan, Staff, Kaj, User…) — nam upore boro kore, baki tottho niche. Toolbar er beshi button "⋯ Aro" te, filter gulo "⚙️ Filter" chaple khule. Notun jog korar boro "+" button niche dane.','🗂️ Tables show as cards on phones (Passport, Agent, Company, Accounts, Cash & Bank, Loan, Staff, Tasks, Users…) — the name large on top, the details below. Extra toolbar buttons go under "⋯ More", filters open with "⚙️ Filter". A big "+" add button sits at the bottom right.','🗂️ টেবিলগুলো মোবাইলে কার্ড হয়ে দেখায় (পাসপোর্ট, এজেন্ট, কোম্পানি, হিসাব, ক্যাশ ও ব্যাংক, লোন, স্টাফ, কাজ, ইউজার…) — নাম উপরে বড় করে, বাকি তথ্য নিচে। টুলবারের বেশি বাটন "⋯ আরো" তে, ফিল্টার "⚙️ Filter" চাপলে খোলে। নতুন যোগ করার বড় "+" বাটন নিচে ডানে।'),
+  T('⬇️ Mobile e Excel / PDF / Backup banale ekta box ashe: Download, Share (WhatsApp / Drive e pathan), ba Khule dekhun. Protidin er Auto Backup chupchap download hoy, box ashe na.','⬇️ On phones, making an Excel / PDF / Backup shows a box: Download, Share (send to WhatsApp / Drive), or Open. The daily Auto Backup downloads quietly without the box.','⬇️ মোবাইলে Excel / PDF / Backup বানালে একটা বক্স আসে: ডাউনলোড, শেয়ার (হোয়াটসঅ্যাপ / ড্রাইভে পাঠান), বা খুলে দেখুন। প্রতিদিনের অটো ব্যাকআপ চুপচাপ ডাউনলোড হয়, বক্স আসে না।'),
+  T('🔐 Login / Setup page mobile e o nijer Boarding Pass theme e (DAC ✈ KUL, airport scene, Passport → Flown dhap) — Visa Renewal er moto shudhu phone er mape shajano: puro chowra card, boro input o button. Niche scroll korle upore er bar lukay, tene namale (pull) Sync / refresh hoy, keyboard khulle niche er bar sore jay. Dashboard e "Phone e App hishebe install korun" card.','🔐 Login / Setup on phones keeps its own Boarding Pass theme (DAC ✈ KUL, airport scene, Passport → Flown steps) — like Visa Renewal, just fitted to the phone: full-width card, large inputs and buttons. Scrolling down hides the top bar, pulling down syncs / refreshes, the bottom bar moves away when the keyboard opens. An "Install as an app" card on the dashboard.','🔐 লগইন / সেটআপ পেজ মোবাইলেও নিজের বোর্ডিং পাস থিমে (DAC ✈ KUL, এয়ারপোর্ট দৃশ্য, Passport → Flown ধাপ) — ভিসা রিনিউয়ালের মতো শুধু ফোনের মাপে সাজানো: পুরো চওড়া কার্ড, বড় ইনপুট ও বাটন। নিচে স্ক্রল করলে উপরের বার লুকায়, টেনে নামালে (pull) সিঙ্ক / রিফ্রেশ, কীবোর্ড খুললে নিচের বার সরে যায়। ড্যাশবোর্ডে "ফোনে অ্যাপ হিসেবে ইনস্টল করুন" কার্ড।')]},
  {v:'4.8.0',d:'2026-11-11',items:[
   T('🎨 Standard rong (Professional Slate + Blue): ekta-i mul rong — nil. Card shada / dhushor, upore er rongdhonu border bad. Rong shudhu manes bojhate: shobuj = thik / pelam / Flown, lal = baki / dilam / Cancelled, kamla = shaboddhan, nil = balance o mul shongkha. Chalu shob status (Received, Medical, Visa, BMET…) ek-i nil pill.','🎨 Standard colours (Professional Slate + Blue): one main colour — blue. Cards are white / grey with no rainbow borders. Colour only carries meaning: green = good / received / Flown, red = due / paid out / Cancelled, amber = attention, blue = balances and key figures. Every in-process status (Received, Medical, Visa, BMET…) uses the same blue pill.','🎨 স্ট্যান্ডার্ড রং (প্রফেশনাল স্লেট + ব্লু): একটাই মূল রং — নীল। কার্ড সাদা / ধূসর, উপরের রংধনু বর্ডার বাদ। রং শুধু মানে বোঝাতে: সবুজ = ঠিক / পেলাম / Flown, লাল = বাকি / দিলাম / Cancelled, কমলা = সাবধান, নীল = ব্যালান্স ও মূল সংখ্যা। চালু সব স্ট্যাটাস (Received, Medical, Visa, BMET…) একই নীল পিল।'),
   T('🧭 Menu bar: light mode e halka (shada), dark mode e gadho slate; je page e achen sheta halka nil e. Khoje-select gulo dekhte ekhon onno dropdown er hubohu moto.','🧭 Menu bar: light (white) in light mode, dark slate in dark mode; the current page is highlighted in light blue. Search dropdowns now look exactly like the other dropdowns.','🧭 মেনু বার: লাইট মোডে হালকা (সাদা), ডার্ক মোডে গাঢ় স্লেট; যে পেজে আছেন সেটা হালকা নীলে। খুঁজে-সিলেক্টগুলো দেখতে এখন অন্য ড্রপডাউনের হুবহু মতো।')]},
@@ -3876,6 +3999,7 @@ const GUIDE=()=>[
  ['🔎',T('Khuje bachai o shortcut','Search-to-pick & shortcuts','খুঁজে বাছাই ও শর্টকাট'),T('Je kono boro dropdown e (Agent, Company, Category…) <b>nam ba phone likhun</b> → ↑ ↓ → Enter. Taka likhle niche <b>kothay</b> dekhay. Tarikh e <b>Aj / Gotokal</b>. <b>Save + Notun</b> = Ctrl + Shift + Enter. Kichu muchle niche <b>↩️ Firiye anun</b>. Lekhar size: Settings → Bhasha o Look.','In any long dropdown (agent, company, category…) <b>type a name or phone</b> → ↑ ↓ → Enter. Amounts are shown <b>in words</b> under the field. <b>Today / Yesterday</b> under dates. <b>Save + New</b> = Ctrl + Shift + Enter. After deleting, <b>↩️ Undo</b> appears at the bottom. Text size: Settings → Language & Look.','যেকোনো বড় ড্রপডাউনে (এজেন্ট, কোম্পানি, ক্যাটাগরি…) <b>নাম বা ফোন লিখুন</b> → ↑ ↓ → Enter। টাকা লিখলে নিচে <b>কথায়</b> দেখায়। তারিখে <b>আজ / গতকাল</b>। <b>সেভ + নতুন</b> = Ctrl + Shift + Enter। কিছু মুছলে নিচে <b>↩️ ফিরিয়ে আনুন</b>। লেখার সাইজ: সেটিংস → ভাষা ও চেহারা।')],
  ['👤',T('Candidate Profile o Recruitment','Candidate Profile & Recruitment','প্রার্থীর প্রোফাইল ও রিক্রুটমেন্ট'),T('Passport Tracker e <b>prarthi r nam e click</b> → Profile: status er itihas, kagoj, taka (<b>Taka nilam / Ferot</b>, <b>Package o Kisti</b>), WhatsApp. Form e <b>📷 Passport scan</b> (MRZ). <b>✈️ Flight list</b> e manifest. Agent Ledger e <b>Status Report</b> o WhatsApp; Company Ledger e <b>Demand Note</b>. Reports → <b>🛂 Recruitment</b>.','Click a <b>candidate name</b> in Passport Tracker → Profile: status timeline, documents, money (<b>Receive / Refund</b>, <b>Package & Instalments</b>), WhatsApp. <b>📷 Passport scan</b> (MRZ) in the form. Manifests in <b>✈️ Flights</b>. Agent Ledger: <b>Status Report</b> and WhatsApp; Company Ledger: <b>Demand Note</b>. Reports → <b>🛂 Recruitment</b>.','পাসপোর্ট ট্র্যাকারে <b>প্রার্থীর নামে ক্লিক</b> → প্রোফাইল: স্ট্যাটাসের ইতিহাস, কাগজ, টাকা (<b>টাকা নিলাম / ফেরত</b>, <b>প্যাকেজ ও কিস্তি</b>), WhatsApp। ফর্মে <b>📷 পাসপোর্ট স্ক্যান</b> (MRZ)। <b>✈️ ফ্লাইট তালিকা</b>-য় ম্যানিফেস্ট। এজেন্ট লেজারে <b>স্ট্যাটাস রিপোর্ট</b> ও WhatsApp; কোম্পানি লেজারে <b>ডিমান্ড নোট</b>। রিপোর্ট → <b>🛂 রিক্রুটমেন্ট</b>।')],
  ['📎',T('Passport er kagoj','Passport documents','পাসপোর্টের কাগজ'),T('Passport Tracker e <b>📎 Kagoj</b> column e click → protita kagoj er pashe <b>⬆️ Upload</b> (chobi / PDF, ek shathe onekgula, ba file tene ene chharun). ✅ = jama, ⭕ = dorkari kintu baki. Cloud Sync chalu thakle encrypt hoye cloud e jay, onno PC te nijei ashe. Filter "📎 Kagoj baki", 🖨️ Checklist print. Admin <b>✏️ Kagoj er list</b> e list bodlate paren (* = lagbe).','Click the <b>📎 Docs</b> column in Passport Tracker → <b>⬆️ Upload</b> next to each document (photos / PDFs, several at once, or drag files in). ✅ = received, ⭕ = required but missing. With Cloud Sync on they are encrypted to the cloud and appear on other PCs. "📎 Documents missing" filter, 🖨️ Checklist print. An Admin can change the list in <b>✏️ Document list</b> (* = required).','পাসপোর্ট ট্র্যাকারে <b>📎 কাগজ</b> কলামে ক্লিক → প্রতিটি কাগজের পাশে <b>⬆️ আপলোড</b> (ছবি / PDF, একসাথে অনেকগুলো, বা ফাইল টেনে এনে ছাড়ুন)। ✅ = জমা, ⭕ = দরকারি কিন্তু বাকি। ক্লাউড সিঙ্ক চালু থাকলে এনক্রিপ্ট হয়ে ক্লাউডে যায়, অন্য পিসিতে নিজেই আসে। ফিল্টার "📎 কাগজ বাকি", 🖨️ চেকলিস্ট প্রিন্ট। অ্যাডমিন <b>✏️ কাগজের তালিকা</b>-য় তালিকা বদলাতে পারেন (* = লাগবে)।')],
+ ['📱',T('Mobile e chalano','Using on a phone','মোবাইলে চালানো'),T('Phone e khulle App er moto: niche <b>Home · Passport · Hishab · Kaj · Aro</b> tab. <b>Aro</b> te shob menu, Sync, Bhasha, Light/Dark, Account o Logout. Notun jog korte niche dane boro <b>+</b>. Table gulo card hoye dekhay; toolbar er baki button <b>⋯ Aro</b> te, filter <b>⚙️ Filter</b> e. Form puro screen e — upore <b>←</b> ba phone er <b>Back</b> e bondho, niche Save. Upore theke tene namale Sync / refresh. Excel / PDF banale box theke <b>Download</b>, <b>Share</b> (WhatsApp / Drive) ba <b>Khule dekhun</b>. Chrome menu → <b>Add to Home screen</b> (ba Dashboard er Install card) e App er moto icon pabe.','On a phone it works like an app: tabs at the bottom — <b>Home · Passport · Accounts · Tasks · More</b>. <b>More</b> holds all menus, Sync, Language, Light/Dark, Account and Log out. Use the big <b>+</b> at the bottom right to add. Tables show as cards; extra toolbar buttons are under <b>⋯ More</b>, filters under <b>⚙️ Filter</b>. Forms open full screen — close with <b>←</b> or the phone <b>Back</b> button; Save is at the bottom. Pull down from the top to sync / refresh. When you make an Excel / PDF, use <b>Download</b>, <b>Share</b> (WhatsApp / Drive) or <b>Open</b> in the box. Chrome menu → <b>Add to Home screen</b> (or the Install card on the dashboard) gives you an app icon.','ফোনে খুললে অ্যাপের মতো: নিচে <b>হোম · পাসপোর্ট · হিসাব · কাজ · আরো</b> ট্যাব। <b>আরো</b> তে সব মেনু, সিঙ্ক, ভাষা, লাইট/ডার্ক, অ্যাকাউন্ট ও লগআউট। নতুন যোগ করতে নিচে ডানে বড় <b>+</b>। টেবিলগুলো কার্ড হয়ে দেখায়; টুলবারের বাকি বাটন <b>⋯ আরো</b> তে, ফিল্টার <b>⚙️ Filter</b> এ। ফর্ম পুরো স্ক্রিনে — উপরে <b>←</b> বা ফোনের <b>Back</b> এ বন্ধ, নিচে Save। উপর থেকে টেনে নামালে সিঙ্ক / রিফ্রেশ। Excel / PDF বানালে বক্স থেকে <b>ডাউনলোড</b>, <b>শেয়ার</b> (হোয়াটসঅ্যাপ / ড্রাইভ) বা <b>খুলে দেখুন</b>। Chrome মেনু → <b>Add to Home screen</b> (বা ড্যাশবোর্ডের Install কার্ড) এ অ্যাপের মতো আইকন পাবেন।')],
  ['☁️',T('Cloud Sync','Cloud Sync','ক্লাউড সিঙ্ক'),T('Settings → Cloud Sync e upore duita tab: <b>Supabase</b> ba <b>Google Apps Script</b> (Google Sheet) — je kono ekta, oi tab er dhap onujayi setup korun. Upore <b>sync chip</b>: ✓ Synced, ☁️ baki, ⟳ cholche, ⚠️ somossa — click korle ekhoni sync. Auto sync save er 6 second por ar proti 2 minute — kintu form khola ba type korle opekkha kore, tai kaj kokhono atke na. Proti PC te alada <b>Branch code</b> din (voucher no mile na).','Settings → Cloud Sync has two tabs at the top: <b>Supabase</b> or <b>Google Apps Script</b> (Google Sheet) — pick one and follow that tab\'s steps. The <b>sync chip</b> at the top: ✓ Synced, ☁️ pending, ⟳ running, ⚠️ problem — click it to sync now. Auto-sync runs 6 seconds after saving and every 2 minutes — but waits while a form is open or you are typing, so work never stalls. Give each PC a different <b>branch code</b> (voucher numbers never clash).','সেটিংস → ক্লাউড সিঙ্কে উপরে দুটি ট্যাব: <b>Supabase</b> বা <b>Google Apps Script</b> (Google Sheet) — যেকোনো একটি, সেই ট্যাবের ধাপ অনুযায়ী সেটআপ করুন। উপরে <b>সিঙ্ক চিপ</b>: ✓ সিঙ্ক হয়েছে, ☁️ বাকি, ⟳ চলছে, ⚠️ সমস্যা — ক্লিক করলে এখনই সিঙ্ক। অটো সিঙ্ক সেভের ৬ সেকেন্ড পর আর প্রতি ২ মিনিটে — কিন্তু ফর্ম খোলা বা টাইপ করলে অপেক্ষা করে, তাই কাজ কখনো আটকায় না। প্রতি পিসিতে আলাদা <b>ব্রাঞ্চ কোড</b> দিন (ভাউচার নম্বর মেলে না)।')],
  ['💽',T('Backup o data nirapotta','Backup & data safety','ব্যাকআপ ও ডেটা নিরাপত্তা'),T('Data ei browser er IndexedDB te. Niyomito <b>Backup</b> nin (Settings → Backup); onno PC te nite hole Restore. Ek-i software dui tab e khulben na — khulle sabdhan barta ashe. Kichu vul hole <b>Error Log</b> dekhun.','Data lives in this browser\'s IndexedDB. Take regular <b>backups</b> (Settings → Backup); restore one to move to another PC. Do not open the software in two tabs — a warning appears if you do. If something goes wrong, check the <b>Error Log</b>.','ডেটা এই ব্রাউজারের IndexedDB-তে। নিয়মিত <b>ব্যাকআপ</b> নিন (সেটিংস → ব্যাকআপ); অন্য পিসিতে নিতে হলে রিস্টোর। একই সফটওয়্যার দুই ট্যাবে খুলবেন না — খুললে সতর্কবার্তা আসে। কিছু ভুল হলে <b>এরর লগ</b> দেখুন।')]];
 const SHORTCUTS=()=>[['Ctrl + Shift + Enter',T('Save + Notun (form e)','Save + New (in forms)','সেভ + নতুন (ফর্মে)')],['↑ ↓ · Enter',T('Khuje-select e bachai','Pick in a search dropdown','খুঁজে-সিলেক্টে বাছাই')],['Alt + 1 … 9',T('Menu er page e jan','Jump to a page','মেনুর পেজে যান')],['F2',T('Voucher Verify (QR scan)','Verify a voucher (QR scan)','ভাউচার যাচাই (QR স্ক্যান)')],['Ctrl + Shift + U','Visibility Control (Admin)'],['Ctrl + N',T('Ei page e notun record','New record on this page','এই পেজে নতুন রেকর্ড')],['/',T('Search box e jan','Focus the search box','সার্চ বক্সে যান')],['Enter',T('Form e porer ghor','Next field in a form','ফর্মে পরের ঘর')],['Ctrl + Enter',T('Form save','Save the form','ফর্ম সেভ')],['Esc',T('Popup / menu bondho','Close popup / menu','পপআপ / মেনু বন্ধ')],['Ctrl + P',T('Ei page er report print','Print this page\'s report','এই পেজের রিপোর্ট প্রিন্ট')],['Alt + T',T('Dark / Light','Dark / Light','ডার্ক / লাইট')],['Alt + M',T('Menu chhoto / boro','Collapse / expand menu','মেনু ছোট / বড়')],['Alt + L',T('Bhasha','Language','ভাষা')],['Alt + K',T('Ei talika','This list','এই তালিকা')],['F1',T('User Guide o Changelog','User Guide & Changelog','ইউজার গাইড ও চেঞ্জলগ')]];
@@ -4892,6 +5016,183 @@ function onbCard(){if(!CU||!isAdmin()||lsGet(ONB_KEY)==='1')return '';const L=on
   '<div class="doc-bar"><i style="width:'+Math.round(done/L.length*100)+'%"></i></div><div class="onb-g">'+L.map(x=>'<div class="onb-i'+(x[2]?' done':'')+'">'+(x[2]?'✅':'⬜')+' <span>'+esc(x[1])+'</span>'+(x[2]?'':'<button class="btn ghost sm" data-act="onbGo" data-k="'+x[0]+'">'+esc(T('Korun →','Do it →','করুন →'))+'</button>')+'</div>').join('')+'</div></div>'}
 Object.assign(ACT,{onbHide:()=>{lsSet(ONB_KEY,'1');softRender()},onbGo:d=>{const x=onbItems().find(i=>i[0]===d.k);if(x)try{x[3]()}catch(e){errLog('onb',e)}}});
 {const _dsh=PAGES.dashboard;PAGES.dashboard=function(){return onbCard()+_dsh.apply(this,arguments)}}
+
+/* =====================================================================
+   v4.9 — MOBILE e APP er MOTO (Costing v19.50–19.74 er hubohu niyom)
+   Shudhu 760px er choto screen e (html.appm). Computer e kichu-i bodlay na.
+   Niche tab bar · Phone er Back · Upore er bar lukano · Puro-screen form (← fire jan, niche Save)
+   Table → card · "⋯ Aro" · Filter lukano · FAB (+) · Tene Refresh · Install · Download / Share box · App-style Login
+   ===================================================================== */
+const APPM_MQ=window.matchMedia?window.matchMedia('(max-width:760px)'):{matches:false,addEventListener(){}};
+const appmOn=()=>!!APPM_MQ.matches;
+const isMobileDev=()=>appmOn()||(window.matchMedia&&window.matchMedia('(pointer:coarse)').matches&&Math.min(screen.width,screen.height)<820);
+let APPM_POP=false,APPM_CLOSING=false,APPM_OPEN=0,APPM_LASTY=0,APPM_T=null,APPM_DEFER=null,APPM_FY=0,APPM_FAB=null;
+const AP_IC={
+ home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
+ pass:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M8.5 17h7"/></svg>',
+ cash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v.01M18 14.5v.01"/></svg>',
+ task:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>',
+ agent:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><path d="M16 4.5a3.5 3.5 0 010 7M18.5 20c-.3-1.6-1-3-2-4"/></svg>',
+ more:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>',
+ plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+ sync:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 12a9 9 0 11-3-6.7"/><path d="M21 4v5h-5"/></svg>'};
+function appmEls(){if($('#bnav'))return;const d=document.createElement('div');
+ d.innerHTML='<nav id="bnav" aria-label="App"></nav><button type="button" id="appmFab" aria-label="+"></button><div id="appmSheet"></div><div id="ptrInd">'+AP_IC.sync+'</div><div id="fileOut"></div>';
+ while(d.firstChild)document.body.appendChild(d.firstChild);
+ $('#appmFab').addEventListener('click',()=>{if(APPM_FAB)APPM_FAB.click()});
+ $('#appmSheet').addEventListener('click',e=>{if(e.target.id==='appmSheet')appmSheetClose();const b=e.target.closest('.sh-i');if(b&&b.dataset.i!==undefined)appmSheetGo(+b.dataset.i)})}
+
+/* ---------- PHONE ER BACK BUTTON ---------- */
+function appmOverlays(){const L=[];if($('#modal2Bg')&&$('#modal2Bg').classList.contains('show'))L.push('m2');if($('#modalBg')&&$('#modalBg').classList.contains('show'))L.push('m1');
+ if($('#sidebar')&&$('#sidebar').classList.contains('open'))L.push('sb');if($('#popMenu')&&$('#popMenu').classList.contains('show'))L.push('pop');return L}
+const appmCount=()=>appmOverlays().length+(($('#appmSheet')||{classList:{contains:()=>false}}).classList.contains('open')?1:0)+(($('#fileOut')||{classList:{contains:()=>false}}).classList.contains('open')?1:0);
+function appmCloseTop(){if($('#fileOut').classList.contains('open')){fileOutClose();return true}if($('#appmSheet').classList.contains('open')){appmSheetClose();return true}
+ const cf=$('#cfBg.show');if(cf){const no=cf.querySelector('[data-cf="0"]');if(no){no.click();return true}}
+ if($('#modal2Bg').classList.contains('show')){const x=$('#modal2Body .x');if(x)x.click();else closeModal2();return true}
+ if($('#modalBg').classList.contains('show')){const x=$('#modalBody .x');if(x)x.click();else closeModal();return true}
+ if($('#popMenu')&&$('#popMenu').classList.contains('show')){$('#popMenu').classList.remove('show');return true}
+ if($('#sidebar').classList.contains('open')){ACT.menuClose();return true}return false}
+function appmOnPop(e){if(!appmOn()||!CU)return;const st=(e&&e.state)||{};
+ if(appmCount()>0){const before=appmCount();APPM_CLOSING=true;appmCloseTop();
+  setTimeout(()=>{APPM_CLOSING=false;APPM_OPEN=appmCount();if(appmCount()>=before&&before>0){try{history.pushState({amzM:1,ap:ST.page},'')}catch(x){}}},350);return}   // "Save hoyni" proshne "na" — form khola-i thake
+ if(st.dead||st.amzM){try{history.back()}catch(x){}return}
+ if(st.ap&&st.ap!==ST.page&&canView(st.ap)){APPM_POP=true;try{go(st.ap)}catch(x){}APPM_POP=false}}
+function appmWatchOverlays(){const c=appmCount();if(!appmOn()){APPM_OPEN=c;return}
+ if(c>APPM_OPEN){for(let i=APPM_OPEN;i<c;i++){try{history.pushState({amzM:1,ap:ST.page},'')}catch(x){}}}
+ else if(c<APPM_OPEN&&!APPM_CLOSING){try{if(history.state&&history.state.amzM)history.replaceState({dead:1,ap:ST.page},'')}catch(x){}}
+ APPM_OPEN=c;document.documentElement.classList.toggle('appm-modal',c>0)}
+{const _go=go;go=function(p){const from=ST.page;const r=_go.apply(this,arguments);try{if(appmOn()&&!APPM_POP&&CU&&ST.page===p&&p!==from)history.pushState({ap:p},'')}catch(x){}return r}}
+
+/* ---------- NICHE TAB BAR ---------- */
+function appmTabs(){const L=[];const add=(k,l,i,badge)=>{if(canView(k))L.push({k,l,i,badge})};
+ add('dashboard',T('Home','Home','হোম'),'home');add('passports',T('Passport','Passport','পাসপোর্ট'),'pass');add('accounts',T('Hishab','Accounts','হিসাব'),'cash');
+ let td=0;try{td=DB.tasks.filter(t=>!t.done&&t.due&&t.due<=today()).length}catch(e){}
+ add('tasks',T('Kaj','Tasks','কাজ'),'task',td);if(L.length<4)add('agents',T('Agent','Agent','এজেন্ট'),'agent');
+ while(L.length>4)L.pop();L.push({k:'_more',l:T('Aro','More','আরও'),i:'more'});return L}
+function appmBnav(){const nv=$('#bnav');if(!nv)return;const inApp=!!CU&&appmOn()&&!($('#authScreen')&&getComputedStyle($('#authScreen')).display!=='none');
+ document.documentElement.classList.toggle('appm-in',inApp);if(!inApp){if(nv.innerHTML){nv.innerHTML='';nv.__h=''}return}
+ const TB=appmTabs(),keys=TB.map(t=>t.k);
+ const h=TB.map(t=>{const on=t.k===ST.page||(t.k==='_more'&&!keys.includes(ST.page));return '<button type="button" class="'+(on?'on':'')+'" data-bn="'+t.k+'" aria-label="'+esc(t.l)+'"><span class="bn-ic">'+AP_IC[t.i]+'</span><span class="bn-l">'+esc(t.l)+'</span>'+(t.badge?'<span class="bn-badge">'+(t.badge>99?'99+':t.badge)+'</span>':'')+'</button>'}).join('');
+ if(nv.__h!==h){nv.innerHTML=h;nv.__h=h}}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#bnav [data-bn]');if(!b)return;const k=b.dataset.bn;if(k==='_more')appmMore();else if(k!==ST.page)go(k);else window.scrollTo({top:0,behavior:'smooth'})});
+function appmMore(){const skip=['dashboard','passports','accounts','tasks'];const items=navFlat().filter(id=>!skip.includes(id)&&canView(id)).map(id=>{const d=pageDef(id)||{};return{l:(d.ic?d.ic+'  ':'')+(d.label||id),fn:()=>go(id),on:id===ST.page}});
+ const ex=[{l:'🔍  '+T('Voucher Verify','Voucher verify','ভাউচার যাচাই'),fn:()=>ACT.verify({})},{l:'🌐  '+T('Bhasha','Language','ভাষা'),fn:()=>ACT.langMenu({},$('#langBtn'))},{l:(document.documentElement.dataset.theme==='dark'?'☀️  ':'🌙  ')+T('Light / Dark','Light / Dark','লাইট / ডার্ক'),fn:()=>ACT.themeToggle({})},
+  {l:'📖  '+T('User Guide','User guide','ইউজার গাইড'),fn:()=>ACT.guide({})},{l:'👤  '+T('Amar account / Password','My account / Password','আমার অ্যাকাউন্ট / পাসওয়ার্ড'),fn:()=>ACT.accountMenu({},$('#userChip'))},{l:'⏻  '+T('Logout','Log out','লগআউট'),fn:()=>ACT.logout({}),danger:1}];
+ if(syncReady())ex.unshift({l:'🔄  '+T('Ekhoni Sync','Sync now','এখনই সিঙ্ক'),fn:()=>syncNow(true)});
+ appmSheet(T('Shob menu','All menus','সব মেনু'),items.concat([{sep:1}],ex))}
+/* ---------- NICHE THEKE OTHA MENU (sheet) ---------- */
+let APPM_SH=[];
+function appmSheet(title,items){const el=$('#appmSheet');if(!el)return;APPM_SH=items;
+ el.innerHTML='<div class="sh"><div class="sh-grab"></div>'+(title?'<div class="sh-t">'+esc(title)+'</div>':'')+items.map((it,i)=>it.sep?'<div class="sh-sep"></div>':'<button type="button" class="sh-i'+(it.on?' on':'')+(it.danger?' danger':'')+(it.fn?'':' info')+'" data-i="'+i+'">'+esc(it.l)+'</button>').join('')+'</div>';
+ el.classList.add('open');appmWatchOverlays()}
+function appmSheetClose(){const el=$('#appmSheet');if(!el||!el.classList.contains('open'))return;el.classList.remove('open');el.innerHTML='';appmWatchOverlays()}
+function appmSheetGo(i){const it=APPM_SH[i];if(!it||!it.fn)return;appmSheetClose();setTimeout(()=>{try{it.fn()}catch(e){errLog('sheet',e)}},40)}
+
+/* ---------- TABLE → CARD ---------- */
+const APPM_CARD_PAGES={passports:1,agents:1,companies:1,accounts:1,loans:1,staff:1,tasks:1,users:1,bin:1,rates:1,cashbank:1,flights:1};
+const MC_TITLE=/candidate|name|nam\b|agent|company|party|title|kaj|user|staff|category|প্রার্থী|নাম|এজেন্ট|কোম্পানি|কাজ/i;
+function appmCards(){if(!appmOn()||!APPM_CARD_PAGES[ST.page])return;const root=$('#content');if(!root)return;
+ root.querySelectorAll('table').forEach(tb=>{if(tb.classList.contains('m-cards')||tb.closest('.modal,.no-mcard,.aging'))return;
+  const hr=tb.tHead&&tb.tHead.rows.length?tb.tHead.rows[tb.tHead.rows.length-1]:null;if(!hr||hr.cells.length<3)return;
+  if(!tb.tBodies[0]||(tb.tBodies[0].rows.length===1&&tb.querySelector('td[colspan]:not([colspan="1"])')))return;
+  const H=[];Array.from(hr.cells).forEach(th=>{const t=(th.childNodes[0]&&th.childNodes[0].textContent||th.textContent||'').trim();for(let k=0;k<(th.colSpan||1);k++)H.push(t)});
+  let ti=H.findIndex(h=>MC_TITLE.test(h));tb.classList.add('m-cards');
+  Array.from(tb.tBodies).concat(tb.tFoot?[tb.tFoot]:[]).forEach(tbd=>Array.from(tbd.rows).forEach(r=>{let k=0,titled=false;if(r.cells.length===1)return;
+   Array.from(r.cells).forEach(td=>{const lab=H[k]||'';td.querySelectorAll('.sub2').forEach(s=>{if(!(s.textContent||'').replace(/\u00a0/g,'').trim())s.remove()});td.setAttribute('data-label',lab);const txt=(td.textContent||'').trim(),hasBtn=!!td.querySelector('button,a.btn,.btn'),hasIn=!!td.querySelector('input:not([type=checkbox]),select,textarea');
+    const onlyChk=!txt&&td.querySelector('input[type=checkbox]')&&td.querySelectorAll('input,select,button').length===1;
+    if(onlyChk)td.classList.add('mc-chk');
+    else if(lab==='#'||/^\d+$/.test(txt)&&lab==='#')td.classList.add('mc-empty');
+    else if(!titled&&((ti>=0&&k===ti)||(ti<0&&txt&&!hasBtn&&!/^[\d\s,.\-:/]+$/.test(txt)))){td.classList.add('mc-title');titled=true}
+    else if(hasBtn&&!hasIn&&(td===r.cells[r.cells.length-1]||!txt.replace(/[^\wঀ-৿]/g,'').length))td.classList.add('mc-act');
+    else if(!lab)td.classList.add('mc-nolab');
+    if(!td.classList.contains('mc-title')){if(!txt&&!hasBtn&&!hasIn&&!td.querySelector('img,svg,input'))td.classList.add('mc-empty');else if(!txt.replace(/[—\-·\s\u00a0]/g,''))td.classList.add('mc-empty')}
+    if(!td.classList.contains('mc-title')&&!td.classList.contains('mc-act')&&!td.classList.contains('mc-chk')&&td.childNodes.length>1&&!hasIn){const w=document.createElement('span');w.className='mc-v';while(td.firstChild)w.appendChild(td.firstChild);td.appendChild(w)}
+    k+=td.colSpan||1})}))})}
+/* ---------- "⋯ ARO" o FILTER ---------- */
+function appmActions(){if(!appmOn())return;
+ document.querySelectorAll('#content .toolbar,#content .lv-bar').forEach(bar=>{if(bar.dataset.apm||bar.closest('.modal'))return;bar.dataset.apm='1';
+  const B=Array.from(bar.querySelectorAll(':scope > .btn,:scope > a.btn,:scope > span > .btn,:scope > div > .btn')).filter(b=>!b.closest('.seg,.tabs')&&b.offsetParent!==null);
+  const S=Array.from(bar.querySelectorAll(':scope select,:scope .cb-wrap')).filter(s=>!s.closest('.cb-wrap')||s.classList.contains('cb-wrap')).filter(s=>s.offsetParent!==null&&!(s.tagName==='SELECT'&&s.closest('.cb-wrap')));
+  if(S.length>=3){S.forEach(s=>s.classList.add('pa-flt'));const act=S.filter(s=>{const sel=s.tagName==='SELECT'?s:s.querySelector('select');return sel&&sel.value!==''}).length;
+   const fb=document.createElement('button');fb.type='button';fb.className='btn ghost sm pa-fbtn'+(act?' on':'');fb.innerHTML='⚙️ '+esc(T('Filter','Filter','ফিল্টার'))+(act?' <b>'+act+'</b>':'');
+   fb.onclick=()=>{bar.classList.toggle('flt-open');fb.classList.toggle('open')};bar.insertBefore(fb,S[0])}
+  if(B.length<=2)return;
+  const keep=B.filter(b=>!b.classList.contains('ghost')&&!/^\s*\+/.test(b.textContent)).slice(0,1);const add=B.find(b=>/^\s*\+/.test(b.textContent));
+  const hid=B.filter(b=>!keep.includes(b)&&b!==add);if(hid.length<2)return;hid.forEach(b=>b.classList.add('pa-hid'));
+  const mb=document.createElement('button');mb.type='button';mb.className='btn ghost sm pa-more';mb.innerHTML='⋯ '+esc(T('Aro','More','আরও'));
+  mb.onclick=()=>appmSheet(T('Aro kaj','More actions','আরও কাজ'),hid.map(b=>({l:(b.textContent||'').replace(/\s+/g,' ').trim()||b.title||'…',danger:b.classList.contains('red'),fn:()=>b.click()})));bar.appendChild(mb)})}
+/* ---------- FAB (+ notun) ---------- */
+function appmFab(){const fb=$('#appmFab');if(!fb)return;APPM_FAB=null;
+ if(appmOn()&&CU&&!document.documentElement.classList.contains('appm-modal')){const B=Array.from(document.querySelectorAll('#content .btn')).filter(b=>{if(b.closest('table,td,.modal,.dh-card,.onb'))return false;return /^\s*\+/.test(b.textContent||'')&&(b.offsetParent!==null||b.classList.contains('pa-hid'))});if(B.length)APPM_FAB=B[0]}
+ if(!APPM_FAB){fb.classList.remove('on');fb.__k='';return}
+ APPM_FAB.classList.add('pa-hid');const lab=(APPM_FAB.textContent||'').replace(/^\s*\+\s*/,'').trim(),k=ST.page+'|'+lab;
+ if(fb.__k!==k){fb.innerHTML=AP_IC.plus+'<span class="fl">'+esc(lab)+'</span>';fb.setAttribute('aria-label',lab);fb.__k=k;fb.classList.remove('mini')}fb.classList.add('on')}
+function appmFabScroll(){const fb=$('#appmFab');if(!fb||!fb.classList.contains('on'))return;const y=window.scrollY||0;if(y>APPM_FY+10)fb.classList.add('mini');else if(y<APPM_FY-10||y<40)fb.classList.remove('mini');APPM_FY=y}
+/* ---------- STATUS BAR RONG ---------- */
+function appmTheme(){try{const m=document.querySelector('meta[name="theme-color"]');if(!m)return;if(!m.__orig)m.__orig=m.getAttribute('content');
+ const inLogin=$('#authScreen')&&getComputedStyle($('#authScreen')).display!=='none';let c=m.__orig;
+ if(appmOn())c=inLogin?'#14234f':(document.documentElement.dataset.theme==='dark'?'#1e293b':'#ffffff');m.setAttribute('content',c)}catch(e){}}
+function appmAfter(){try{appmTheme()}catch(e){}try{appmBnav()}catch(e){errLog('bnav',e)}try{appmCards()}catch(e){errLog('mcards',e)}try{appmActions()}catch(e){errLog('mact',e)}try{appmFab()}catch(e){errLog('fab',e)}try{appmLogin()}catch(e){}}
+/* ---------- UPORE ER BAR LUKANO ---------- */
+function appmScroll(){if(!appmOn())return;const y=window.scrollY||0,tb=$('.topbar');if(!tb)return;if(y<60||y<APPM_LASTY-8)tb.classList.remove('tb-hide2');else if(y>APPM_LASTY+8)tb.classList.add('tb-hide2');APPM_LASTY=y}
+function appmVV(){if(!window.visualViewport)return;const kb=window.visualViewport.height<window.innerHeight*.72;document.documentElement.classList.toggle('kb-open',kb&&appmOn())}
+/* ---------- TENE REFRESH ---------- */
+const PTR={y0:null,d:0,busy:false};
+function ptrStart(e){if(!appmOn()||PTR.busy||appmCount()>0||window.scrollY>2||!CU){PTR.y0=null;return}PTR.y0=e.touches[0].clientY;PTR.d=0}
+function ptrMove(e){if(PTR.y0===null)return;PTR.d=e.touches[0].clientY-PTR.y0;const ind=$('#ptrInd');if(!ind)return;if(PTR.d>0&&window.scrollY<=0){const t=Math.min(PTR.d*.5,90);ind.style.transform='translateY('+(t-50)+'px) rotate('+(t*4)+'deg)'}}
+function ptrEnd(){const ind=$('#ptrInd');if(PTR.y0===null)return;const ok=PTR.d>130;PTR.y0=null;if(!ind)return;if(!ok){ind.style.transform='';return}
+ PTR.busy=true;ind.classList.add('spin');ind.style.transform='translateY(26px)';const done=()=>{PTR.busy=false;ind.classList.remove('spin');ind.style.transform='';softRender()};
+ try{if(syncReady())Promise.resolve(syncNow(true)).then(()=>{toast(T('Sync hoyeche','Synced','সিঙ্ক হয়েছে'),'ok');done()}).catch(done);else setTimeout(()=>{done();toast(T('Page notun kore dekhano holo','Refreshed','পেজ নতুন করে দেখানো হলো'))},400)}catch(e){done()}}
+/* ---------- PHONE e INSTALL ---------- */
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();APPM_DEFER=e;try{if(ST.page==='dashboard'&&CU)softRender()}catch(x){}});
+const appmStandalone=()=>(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||window.navigator.standalone===true;
+const appmIOS=()=>/iPhone|iPad|iPod/i.test(navigator.userAgent||'')||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent||''));
+function appmInstallCard(){if(!appmOn()||appmStandalone()||lsGet('amaz_mp_noinst')==='1')return '';if(!APPM_DEFER&&!appmIOS())return '';
+ return '<div class="card ap-inst"><span class="ap-inst-ic">📲</span><div><b>'+esc(T('Phone e App hishebe rakhun','Install as an app','ফোনে অ্যাপ হিসেবে রাখুন'))+'</b><span class="sub2">'+esc(T('Home Screen e icon, puro screen e khole, druto chole','Icon on the home screen, opens full screen, faster','হোম স্ক্রিনে আইকন, পুরো স্ক্রিনে খোলে, দ্রুত চলে'))+'</span></div><button class="btn sm" data-act="apInstall">Install</button><button class="btn ghost sm" data-act="apNoInst">✕</button></div>'}
+ACT.apInstall=()=>{if(APPM_DEFER){const d=APPM_DEFER;APPM_DEFER=null;d.prompt();(d.userChoice||Promise.resolve({})).then(r=>{if(r&&r.outcome==='accepted')toast(T('Install hocche — Home Screen e dekhun','Installing — check your home screen','ইনস্টল হচ্ছে — হোম স্ক্রিনে দেখুন'),'ok');softRender()});return}
+ appmSheet(T('iPhone e Install','Install on iPhone','আইফোনে ইনস্টল'),[{l:T('1. Nicher Share (⬆) button chapun','1. Tap the Share (⬆) button','১. নিচের Share (⬆) বোতাম চাপুন')},{l:T('2. "Add to Home Screen" bachun','2. Choose "Add to Home Screen"','২. "Add to Home Screen" বাছুন')},{l:T('3. Upore dane "Add" chapun','3. Tap "Add" at the top right','৩. উপরে ডানে "Add" চাপুন')}])};
+ACT.apNoInst=()=>{lsSet('amaz_mp_noinst','1');softRender()};
+{const _dsh2=PAGES.dashboard;PAGES.dashboard=function(){return appmInstallCard()+_dsh2.apply(this,arguments)}}
+
+/* ---------- MOBILE e PDF / EXCEL / BACKUP — Download · Share · Khule dekhun ----------
+   File banate kayek second lage — totokkhone phone er browser "chap" bhule jay, tai file namto na.
+   Ekhon file toiri hole ekta box ashe; chaplei name. Computer e ager motoi shorasori download. */
+let _foURL=null;
+function fileOutClose(){const ov=$('#fileOut');if(!ov||!ov.classList.contains('open'))return;ov.classList.remove('open');ov.innerHTML='';const u=_foURL;_foURL=null;if(u)setTimeout(()=>URL.revokeObjectURL(u),120000);appmWatchOverlays()}
+let APPM_QUIET=0;{const _ab=ACT.backup;ACT.backup=async function(d){if(d&&d.auto)APPM_QUIET++;try{return await _ab.apply(this,arguments)}finally{if(d&&d.auto)APPM_QUIET--}}}
+{const _dl=download;download=function(blob,name){if(!isMobileDev()||!(blob instanceof Blob)||APPM_QUIET>0)return _dl.apply(this,arguments);
+ let file=null;try{file=new File([blob],name,{type:blob.type||'application/octet-stream'})}catch(e){}
+ const canSh=!!(file&&navigator.canShare&&(()=>{try{return navigator.canShare({files:[file]})}catch(e){return false}})());
+ fileOutClose();const u=URL.createObjectURL(blob);_foURL=u;const ov=$('#fileOut');const kind=/\.pdf$/i.test(name)?'PDF':/\.xlsx?$/i.test(name)?'Excel':T('File','File','ফাইল');
+ ov.innerHTML='<div class="fo"><div class="sh-grab"></div><div class="fo-t">✅ '+esc(kind+T(' toiri hoyeche',' is ready',' তৈরি হয়েছে'))+'</div><div class="fo-n"><b>'+esc(name)+'</b> <span class="sub2">('+fm(Math.max(1,Math.round(blob.size/1024)))+' KB)</span></div>'+
+  '<a class="btn" id="foDl" href="'+u+'" download="'+esc(name)+'">⬇️ '+esc(T('Download (phone e rakhun)','Download (save to phone)','ডাউনলোড (ফোনে রাখুন)'))+'</a>'+
+  (canSh?'<button type="button" class="btn green" id="foSh">📤 '+esc(T('Share — WhatsApp / Drive / Email','Share — WhatsApp / Drive / Email','শেয়ার — WhatsApp / Drive / Email'))+'</button>':'')+
+  '<a class="btn ghost" href="'+u+'" target="_blank" rel="noopener">👁 '+esc(T('Khule dekhun','Open','খুলে দেখুন'))+'</a><button type="button" class="btn ghost" id="foX">'+esc(T('Bondho','Close','বন্ধ'))+'</button>'+
+  '<div class="fo-h">'+esc(T('Download na hole Share chepe Drive / WhatsApp e rakhun, ba "Khule dekhun" theke phone er Download chinho chapun. WhatsApp / Facebook er bhitorer browser e atke gele Chrome e khulun.','If nothing downloads, use Share to save to Drive / WhatsApp, or Open and tap the phone\'s download icon. Inside WhatsApp / Facebook\'s own browser downloads may be blocked — open in Chrome.','ডাউনলোড না হলে Share চেপে Drive / WhatsApp-এ রাখুন, বা "খুলে দেখুন" থেকে ফোনের ডাউনলোড চিহ্ন চাপুন। WhatsApp / Facebook-এর ভেতরের ব্রাউজারে আটকে গেলে Chrome-এ খুলুন।'))+'</div></div>';
+ ov.classList.add('open');appmWatchOverlays();
+ ov.onclick=e=>{if(e.target===ov)fileOutClose()};$('#foX').onclick=fileOutClose;$('#foDl').addEventListener('click',()=>{setTimeout(fileOutClose,400);toast(T('Download shuru hoyeche — phone er Downloads e dekhun','Download started — check your phone\'s Downloads','ডাউনলোড শুরু হয়েছে — ফোনের Downloads-এ দেখুন'),'ok')});
+ const sh=$('#foSh');if(sh)sh.onclick=()=>{navigator.share({files:[file],title:name}).then(fileOutClose).catch(e=>{if(e&&e.name!=='AbortError')toast(T('Share hoyni — Download chapun','Share failed — use Download','শেয়ার হয়নি — ডাউনলোড চাপুন'),'err')})}}}
+
+/* ---------- APP-STYLE LOGIN (mobile) ---------- */
+function appmLogin(){return;const a=$('#authScreen');if(!a)return;let m=a.querySelector('.ln-mlogo');
+ if(!m){m=document.createElement('div');m.className='ln-mlogo';a.insertBefore(m,a.firstChild)}
+ const co=(DB&&S().co&&S().co.name)||($('#sideCo')&&$('#sideCo').textContent)||'Amin Trade International',h='<div class="ln-mark">MP</div><b>AMAZ Manpower</b><span class="ln-mco">'+esc(co)+'</span>';
+ let v=a.querySelector('.ln-ver');if(!v){v=document.createElement('div');v.className='ln-ver';a.appendChild(v)}v.textContent='v'+APP.ver;
+ if(m.__h!==h){m.innerHTML=h;m.__h=h}}
+
+/* ---------- SHURU ---------- */
+function appmInit(){appmEls();const apply=()=>{document.documentElement.classList.toggle('appm',appmOn());appmAfter();if(!appmOn()){const tb=$('.topbar');if(tb)tb.classList.remove('tb-hide2')}};
+ apply();try{APPM_MQ.addEventListener('change',apply)}catch(e){try{APPM_MQ.addListener(apply)}catch(x){}}
+ try{history.replaceState({ap:ST.page||'dashboard'},'')}catch(e){}
+ window.addEventListener('popstate',appmOnPop);window.addEventListener('scroll',appmScroll,{passive:true});window.addEventListener('scroll',appmFabScroll,{passive:true});
+ if(window.visualViewport)window.visualViewport.addEventListener('resize',appmVV);
+ document.addEventListener('touchstart',ptrStart,{passive:true});document.addEventListener('touchmove',ptrMove,{passive:true});document.addEventListener('touchend',ptrEnd,{passive:true});
+ new MutationObserver(muts=>{let ov=false,ct=false;for(const m of muts){const t=m.target;
+   if(m.type==='attributes'){if(t.id==='modalBg'||t.id==='modal2Bg'||t.id==='sidebar'||t.id==='popMenu'||t.id==='authScreen'||t.id==='cfBg')ov=true}
+   else if(t.id==='content'||(t.closest&&t.closest('#content')))ct=true}
+  if(ov){appmWatchOverlays();clearTimeout(APPM_T);APPM_T=setTimeout(appmAfter,40)}if(ct){clearTimeout(APPM_T);APPM_T=setTimeout(appmAfter,40)}}).observe(document.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class','style']})}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',appmInit);else appmInit();
+setInterval(()=>{if(appmOn())try{appmBnav();appmTheme()}catch(e){}},1500);
 
 /* =====================================================================
    v4.3 — LICENSE / TRIAL / LICENSE BILL · VISIBILITY CONTROL · MOTION · LOGIN SPLIT CARD ·
