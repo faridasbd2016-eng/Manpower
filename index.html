@@ -1225,7 +1225,7 @@ const T=(s,e,b)=>{if(LG===1||_docEN)return e;if(LG===2)return b===undefined?e:b;
 const enDoc=f=>function(){const o=_docEN;_docEN=true;try{return f.apply(this,arguments)}finally{_docEN=o}};
 try{document.documentElement.lang=LG===2?'bn':'en'}catch(e){}
 
-const APP={name:'AMAZ Manpower',ver:'4.10.2',build:'b2026.11.19e'};
+const APP={name:'AMAZ Manpower',ver:'4.10.3',build:'b2026.11.24a'};
 const IDB_NAME='amaz_manpower_db',IDB_VER=4;
 const COLLS=['passports','accounts','agents','companies','jobCategories','statuses','categories','users','cashAccounts','transfers','loanParties','vkeys','dayCloses','recons','files','loginLog','bin','tasks','staff','staffTx','mrLocks','yearCloses'];
 const LS_V3='amaz_manpower_v1',LS_V4='amaz_mp_v4';
@@ -3932,6 +3932,7 @@ Object.assign(ACT,{
    GUIDE (F1) — shuchipotro (index) shoho, Changelog, Shortcut, About
    ===================================================================== */
 const CHANGELOG=()=>[
+ {v:'4.10.3',d:'2026-11-24',items:['📴 Offline thik kora: install kora app (PWA) ekbar internet shoho khullei erpor internet chharao khulbe — "This site can\'t be reached / ERR_FAILED" ar ashbe na','🛠 Service worker notun kore lekha: ekta file (icon/manifest) na pele-o baki shob cache hoy; purono version er cache theke-o app khule; PDF/QR/Excel library alada sthayi cache e thake']},
  {v:'4.10.2',d:'2026-11-19',items:['🔔 Notification guide e site er thikana (copy shoho) o ekhon er obostha dekhay; Settings e Allow kore app e phirlei nijei chalu hoye jay','📱 Install kora app er jonno: Chrome er noy, AMAZ Manpower app er App info / Chrome Site settings er Blocked list theke Allow korar step jog']},
  {v:'4.10.1',d:'2026-11-19',items:['🔔 Notification chalu na hole (Block thakle) ekhon step-by-step guide khule — Install kora App, Chrome, phone Settings o iPhone er jonno alada niyom, shathe "Abar chesta korun" button']},
  {v:'4.10.0',d:'2026-11-19',items:[
@@ -5648,7 +5649,8 @@ function checkNewVersion(){if(!ONLINE_APP)return;fetch('version.json?t='+Date.no
   d.innerHTML='<span>🆕 <b>'+esc(T('Notun version ','New version ','নতুন ভার্সন '))+'v'+esc(j.version)+'</b> '+esc(T('eshechhe','is available','এসেছে'))+(j.notes||j.notes_en?' — '+esc(LG===1?(j.notes_en||j.notes):(j.notes||j.notes_en)):'')+'</span><button class="btn sm" data-act="verUpdate">⟳ '+esc(T('Ekhoni Update','Update now','এখনই আপডেট'))+'</button><button class="btn ghost sm" data-act="verLater">'+esc(T('Pore','Later','পরে'))+'</button>';document.body.appendChild(d)}).catch(()=>{})}
 ACT.verUpdate=async()=>{try{await saveNow()}catch(e){}const go=()=>location.reload();try{const r=navigator.serviceWorker&&await navigator.serviceWorker.getRegistration();if(r&&r.update){await r.update().catch(()=>{})}}catch(e){}go()};
 ACT.verLater=()=>{const d=document.getElementById('verBar');if(d)d.remove()};
-if(ONLINE_APP){if('serviceWorker' in navigator)window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})});
+if(/^https?:$/.test(location.protocol)&&('serviceWorker' in navigator)){const _swReg=()=>{navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).catch(()=>{})};if(document.readyState==='complete')_swReg();else window.addEventListener('load',_swReg)}
+if(ONLINE_APP){
  setTimeout(checkNewVersion,8000);setInterval(checkNewVersion,30*60e3);document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkNewVersion()})}
 boot().catch(e=>{errLog('boot',e);document.body.insertAdjacentHTML('beforeend','<div style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;font-family:sans-serif;color:#fff;background:#0f172a;z-index:999">'+T('Software ta chalu korte somossa hoyeche. Page ta reload korun.','There was a problem starting the software. Please reload the page.','সফটওয়্যারটি চালু করতে সমস্যা হয়েছে। পেজটি রিলোড করুন।')+'<br><small>'+esc(e&&e.message)+'</small></div>')});
 </script>
